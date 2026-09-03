@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Off The Wall Digital, websites and automation for small business</title>
+<meta name="description" content="Petro Wall builds websites that feel like meeting the owner, then quietly automates the admin behind them, so small business owners get their evenings back.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Off The Wall Digital, websites and automation for small business">
+<meta property="og:description" content="A website that feels like meeting you, and the quiet systems behind it that give you your evenings back.">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Off The Wall Digital">
+<meta name="twitter:description" content="A website that feels like meeting you, and the quiet systems behind it that give you your evenings back.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Karla:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236f7d45'/%3E%3Cg transform='rotate(-8 32 32)'%3E%3Crect x='17' y='17' width='30' height='30' rx='8' fill='none' stroke='%23fdf8ec' stroke-width='3.5'/%3E%3Cpath d='M32 17v30M17 32h30' stroke='%23fdf8ec' stroke-width='2' opacity='.55'/%3E%3Cpath d='M40 40c0-6 4-9 8-9 0 6-3 9-8 9z' fill='%232ea89a'/%3E%3Ccircle cx='23' cy='24' r='2.6' fill='%23e8547a'/%3E%3C/g%3E%3C/svg%3E">
+
+<style>
+:root{
+  --cream:#fdf8ec;
+  --bone:#f6efdf;
+  --sage:#e9ecda;
+  --tealwash:#e3efec;
+  --coralwash:#fbeae7;
+  --ink:#2f3327;
+  --head:#2a2e21;
+  --muted:#6d7360;
+  --green:#6f7d45;
+  --green-deep:#5c6939;
+  --teal:#2ea89a;
+  --teal-dark:#237a70;
+  --gold:#e3b23c;
+  --gold-dark:#c9911f;
+  --coral:#e8547a;
+  --coral-dark:#c23e63;
+  --link:#4d8b7f;
+  --pane-border:rgba(47,51,39,.16);
+  --shadow-s:0 2px 8px rgba(47,51,39,.06);
+  --shadow-m:0 18px 40px -22px rgba(47,51,39,.34);
+  --shadow-l:0 42px 90px -40px rgba(47,51,39,.42);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --maxw:1240px;
+  --gutter:clamp(20px,5vw,64px);
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:Karla,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:clamp(16.5px,1.05vw,18px);
+  line-height:1.65;
+  overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--teal-dark)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+
+h1,h2,h3,h4,.display{
+  font-family:Fraunces,Georgia,serif;
+  color:var(--head);
+  font-variation-settings:"SOFT" 40,"WONK" 1;
+  letter-spacing:-.022em;
+  line-height:1.02;
+  margin:0;
+  font-weight:600;
+  text-wrap:balance;
+}
+p{text-wrap:pretty}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+section{position:relative}
+
+/* ---------- ground bands ---------- */
+.band{padding:clamp(72px,10vw,140px) 0;position:relative}
+.band--bone{background:var(--bone)}
+.band--sage{background:var(--sage)}
+.band--green{background:var(--green);color:#f3f2e4}
+.band--green h2,.band--green h3{color:#fdf8ec}
+.edge-top{position:absolute;top:-1px;left:0;width:100%;height:40px;display:block}
+.edge-bot{position:absolute;bottom:-1px;left:0;width:100%;height:40px;display:block;transform:rotate(180deg)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(253,248,236,.82);
+  backdrop-filter:saturate(150%) blur(14px);
+  -webkit-backdrop-filter:saturate(150%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease,box-shadow .3s ease;
+}
+.nav.is-stuck{border-bottom-color:rgba(47,51,39,.1);box-shadow:0 10px 30px -26px rgba(47,51,39,.6)}
+.nav__in{display:flex;align-items:center;gap:20px;height:76px;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--head)}
+.brand:hover{color:var(--head)}
+.brand svg{flex:none}
+.brand__name{font-family:Fraunces,serif;font-weight:700;font-size:1.02rem;letter-spacing:-.02em;line-height:1.05;font-variation-settings:"SOFT" 30,"WONK" 1}
+.brand__name span{display:block;font-family:Karla,sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.nav__links{display:flex;align-items:center;gap:30px;margin-left:auto}
+.nav__links a{
+  color:var(--ink);font-weight:600;font-size:.94rem;position:relative;padding:4px 0;
+}
+.nav__links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:var(--teal);transform:scaleX(0);transform-origin:right;
+  transition:transform .35s var(--spring);border-radius:2px;
+}
+.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav__cta{margin-left:8px}
+.menu-btn{display:none;margin-left:auto;background:none;border:1.5px solid var(--pane-border);border-radius:999px;padding:9px 12px;cursor:pointer;color:var(--ink)}
+.mobile-menu{display:none;border-top:1px solid rgba(47,51,39,.1);background:var(--cream)}
+.mobile-menu a{display:block;padding:15px var(--gutter);color:var(--ink);font-weight:600;border-bottom:1px solid rgba(47,51,39,.07)}
+.mobile-menu.open{display:block}
+.mobile-menu .mobile-menu__cta{
+  display:inline-flex;margin:16px var(--gutter) 20px;padding:11px 22px;border-bottom:0;
+  color:var(--cream);font-weight:700;
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:Karla,sans-serif;font-weight:700;font-size:.95rem;
+  padding:14px 26px;border-radius:999px;border:1.5px solid transparent;
+  cursor:pointer;transition:transform .35s var(--spring),box-shadow .35s var(--spring),background .3s ease;
+  white-space:nowrap;
+}
+.btn--primary{
+  background:linear-gradient(120deg,var(--green),var(--teal));
+  color:var(--cream);box-shadow:0 12px 26px -14px rgba(46,168,154,.85);
+}
+.btn--primary:hover{color:var(--cream);transform:translateY(-3px) scale(1.03);box-shadow:0 20px 38px -16px rgba(46,168,154,.9)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:rgba(47,51,39,.25)}
+.btn--ghost:hover{color:var(--ink);transform:translateY(-3px) scale(1.02);border-color:var(--teal);box-shadow:var(--shadow-m)}
+.btn--onGreen{background:var(--cream);color:var(--green-deep);box-shadow:0 12px 26px -16px rgba(0,0,0,.6)}
+.btn--onGreen:hover{color:var(--green-deep);transform:translateY(-3px) scale(1.03)}
+.btn--sm{padding:11px 20px;font-size:.88rem}
+
+/* ---------- eyebrow ---------- */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:Karla,sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.19em;text-transform:uppercase;color:var(--teal-dark);
+  background:rgba(46,168,154,.1);border:1px solid rgba(46,168,154,.22);
+  padding:8px 16px;border-radius:999px;
+}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--coral);display:block}
+.band--green .eyebrow{color:#f0f3e2;background:rgba(253,248,236,.14);border-color:rgba(253,248,236,.3)}
+
+/* ---------- window pane component ---------- */
+.pane{
+  position:relative;border-radius:26px;background:var(--cream);
+  border:3px solid rgba(47,51,39,.82);
+  box-shadow:var(--shadow-l);overflow:hidden;
+}
+.pane__glass{position:relative;overflow:hidden;border-radius:20px;margin:10px}
+.pane__mullion{position:absolute;inset:10px;pointer-events:none;z-index:3}
+.pane__mullion::before,.pane__mullion::after{
+  content:"";position:absolute;background:rgba(47,51,39,.75);
+}
+.pane__mullion::before{left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%)}
+.pane__mullion::after{top:50%;left:0;right:0;height:3px;transform:translateY(-50%)}
+.pane__sheen{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,30%) var(--my,20%),rgba(255,255,255,.42),rgba(255,255,255,0) 62%);
+  mix-blend-mode:screen;transition:opacity .4s ease;
+}
+.pane__sill{height:16px;background:linear-gradient(180deg,rgba(47,51,39,.9),rgba(47,51,39,.72))}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(48px,7vw,86px) 0 clamp(64px,8vw,110px);position:relative;overflow:clip}
+.hero__grid{display:grid;grid-template-columns:1fr 1.12fr;gap:clamp(28px,3.6vw,54px);align-items:center}
+.hero h1{
+  font-size:clamp(2.9rem,6.4vw,5.4rem);
+  font-weight:600;margin:26px 0 0;max-width:14ch;
+}
+.hl{
+  font-style:italic;font-variation-settings:"SOFT" 70,"WONK" 1;
+  background-image:linear-gradient(rgba(232,84,122,.24),rgba(232,84,122,.24));
+  background-repeat:no-repeat;
+  background-position:0 92%;
+  background-size:0% .3em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  animation:wipe 1.1s cubic-bezier(.22,1,.36,1) .5s forwards;
+}
+@keyframes wipe{to{background-size:100% .3em}}
+.hero__sub{font-size:clamp(1.02rem,1.22vw,1.16rem);color:var(--muted);max-width:52ch;margin:26px 0 0}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:center}
+.hero__paneWrap{position:relative}
+.hero__paneWrap .pane{transform:rotate(1.2deg)}
+/* the pane reaches past the page gutter so the image is not boxed in */
+@media (min-width:1021px){
+  .hero__paneWrap{margin-right:calc(var(--gutter) * -0.6)}
+}
+.glow{position:absolute;border-radius:50%;filter:blur(70px);z-index:-1;pointer-events:none}
+.glow--a{width:min(46vw,520px);aspect-ratio:1;right:-8%;top:-10%;background:radial-gradient(circle,rgba(227,178,60,.5),transparent 66%)}
+.glow--b{width:min(40vw,460px);aspect-ratio:1;left:-12%;bottom:-16%;background:radial-gradient(circle,rgba(46,168,154,.38),transparent 66%)}
+
+/* ---------- marquee strip ---------- */
+.strip__track{display:flex;gap:0;width:max-content;animation:slide 46s linear infinite}
+.strip__track span{
+  padding:0 24px;display:inline-flex;align-items:baseline;white-space:nowrap;
+}
+.strip__track b{
+  font-family:Fraunces,serif;font-size:.98rem;font-weight:600;color:var(--head);
+  font-variation-settings:"SOFT" 40,"WONK" 1;
+}
+.strip__track em{font-style:normal;font-size:.89rem;color:var(--muted);margin-left:10px}
+.strip__track i{
+  width:5px;height:5px;border-radius:50%;background:var(--gold);
+  display:inline-block;margin-left:24px;align-self:center;
+}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- section headings ---------- */
+.shead{max-width:min(100%,660px)}
+.shead h2{font-size:clamp(2.1rem,4vw,3.4rem);margin-top:18px}
+.slede{color:var(--muted);max-width:56ch;margin-top:18px;font-size:1.04rem}
+.band--green .slede{color:rgba(253,248,236,.82)}
+
+/* ---------- pull quote ---------- */
+.pull{text-align:center}
+.pull p{
+  font-family:Fraunces,serif;font-style:italic;
+  font-size:clamp(1.6rem,3.4vw,2.7rem);line-height:1.22;color:var(--head);
+  font-variation-settings:"SOFT" 80,"WONK" 1;margin:22px auto 0;max-width:20ch;
+}
+.pull .pullwrap{max-width:min(880px,92%);margin:0 auto}
+.pull cite{display:block;margin-top:26px;font-style:normal;font-weight:700;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-dark)}
+
+/* ---------- split: front / back of house ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:30px;overflow:hidden;box-shadow:var(--shadow-l);margin-top:56px}
+.split__side{padding:clamp(28px,3.4vw,48px) clamp(26px,3.2vw,44px) 16px;display:flex;flex-direction:column}
+.split__side--front{background:var(--cream)}
+.split__side--back{background:var(--green);color:#eef1e0;border-left:3px dashed rgba(253,248,236,.28)}
+.split__art{margin-top:22px;display:block;width:100%;height:auto}
+.split__copy{max-width:34ch}
+.split__side--back h3{color:#fdf8ec}
+.split__label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dark)}
+.split__side--back .split__label{color:#ecd79a}
+.split__side h3{font-size:clamp(1.5rem,2.4vw,2rem);margin:12px 0 14px}
+.split__side p{color:var(--muted);margin:0}
+.split__side--back p{color:rgba(253,248,236,.8)}
+.diagram{margin-top:28px}
+.dash{stroke-dasharray:7 7;animation:march 1.6s linear infinite}
+@keyframes march{to{stroke-dashoffset:-28}}
+.node-label{font-family:Karla,sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.03em;fill:#f2f4e6}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:62px;align-items:start;padding-bottom:30px}
+.card{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:2.5px solid rgba(47,51,39,.82);
+  box-shadow:var(--shadow-m);
+  transform:rotate(var(--tilt,0deg)) translateY(var(--drop,0px));
+  transition:transform .45s var(--spring),box-shadow .45s var(--spring);
+}
+.card:nth-child(1){--tilt:-1.1deg;--drop:0px}
+.card:nth-child(2){--tilt:.9deg;--drop:22px}
+.card:nth-child(3){--tilt:-.6deg;--drop:8px}
+.card:hover{transform:rotate(0deg) translateY(-10px) scale(1.02);box-shadow:var(--shadow-l)}
+.card__awning{height:15px;background:repeating-linear-gradient(90deg,var(--c) 0 18px,#fff8e9 18px 36px)}
+.card__glass{
+  position:relative;padding:30px 26px 34px;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.35) 42%,rgba(255,255,255,0) 43%),
+    var(--cwash);
+}
+.card__glass::after{
+  content:"";position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;
+  border-top:1.5px solid rgba(47,51,39,.1);
+}
+.card__num{
+  position:absolute;top:14px;right:20px;
+  font-family:Fraunces,serif;font-size:3.6rem;font-weight:700;line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px var(--cstroke);
+  opacity:.32;pointer-events:none;user-select:none;
+}
+.card__art{margin-bottom:22px;display:block}
+.card h3{font-size:1.26rem;margin-bottom:11px;max-width:16ch}
+.card p{color:var(--muted);margin:0;font-size:.95rem;line-height:1.6}
+.card__sill{height:11px;background:linear-gradient(180deg,rgba(47,51,39,.86),rgba(47,51,39,.68))}
+
+/* ---------- case deck ---------- */
+.deck{margin-top:56px}
+.case{
+  position:sticky;
+  border-radius:28px;background:var(--cream);
+  border:1px solid rgba(47,51,39,.1);
+  box-shadow:0 -10px 60px -30px rgba(47,51,39,.6),var(--shadow-l);
+  overflow:hidden;margin-bottom:26px;
+}
+.case__awning{height:12px;background:repeating-linear-gradient(90deg,var(--c) 0 22px,#fff8e9 22px 44px)}
+.case__in{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,3.4vw,46px);padding:clamp(24px,3.4vw,44px);align-items:center}
+.shopwin{
+  display:block;border-radius:16px;overflow:hidden;background:#fff;
+  border:1px solid rgba(47,51,39,.14);box-shadow:var(--shadow-m);
+  transition:transform .4s var(--spring),box-shadow .4s var(--spring);
+}
+.shopwin:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:var(--shadow-l)}
+.shopwin__bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid rgba(47,51,39,.09);background:#fbf7ee}
+.shopwin__bar u{width:9px;height:9px;border-radius:50%;display:block}
+.shopwin__url{margin-left:8px;font-size:.75rem;color:var(--muted);letter-spacing:.01em}
+.shopwin img{aspect-ratio:16/10;object-fit:cover;object-position:top center;width:100%;height:auto}
+.case__sector{font-size:.7rem;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--teal-dark)}
+.case__in h3{font-size:clamp(1.7rem,2.8vw,2.35rem);margin:12px 0 14px}
+.case__in p{color:var(--muted);margin:0;font-size:.98rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.tags li{font-size:.76rem;font-weight:600;padding:6px 13px;border-radius:999px;background:rgba(47,51,39,.06);color:var(--ink)}
+.case__quote{margin:22px 0 0;padding:18px 20px;border-left:3px solid var(--c);background:#fff;border-radius:0 14px 14px 0}
+.case__link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:700;font-size:.94rem}
+.case__link svg{transition:transform .35s var(--spring)}
+.case__link:hover svg{transform:translateX(5px)}
+
+/* ---------- week grid ---------- */
+.week{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,5vw,68px);align-items:center}
+.weekgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;max-width:420px}
+.weekgrid b{
+  height:11px;border-radius:3px;background:rgba(47,51,39,.1);display:block;
+  transition:background .6s ease,transform .6s var(--spring);
+}
+.weekgrid b.admin{background:var(--coral);opacity:.85}
+.weekgrid.is-after b.admin{background:var(--teal);opacity:1;transform:scaleX(.62)}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;max-width:420px;margin-bottom:10px}
+.weekdays span{font-size:.66rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-align:center}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;font-size:.82rem;color:var(--muted)}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-1px}
+.disclaim{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:14px}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(32px,5vw,72px);align-items:center}
+.portrait{position:relative;transform:rotate(-3deg)}
+.portrait.rv{transform:rotate(-3deg) translateY(26px)}
+.portrait.rv.is-in{transform:rotate(-3deg)}
+.portrait .pane{border-radius:24px}
+.portrait__img{
+  display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 32%;
+  background:var(--bone);
+}
+/* the sheen reads as glass over artwork, but blows out a face, so ease it right back here */
+.portrait .pane__sheen{
+  background:radial-gradient(380px circle at var(--mx,30%) var(--my,20%),rgba(255,255,255,.17),rgba(255,255,255,0) 66%);
+}
+.about p{color:var(--muted);font-size:1.05rem}
+.about p + p{margin-top:18px}
+
+/* ---------- contact ---------- */
+.contact{
+  border-radius:32px;padding:clamp(40px,6vw,80px) clamp(26px,5vw,64px);text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(600px circle at 12% 10%,rgba(111,125,69,.2),transparent 60%),
+    radial-gradient(600px circle at 88% 22%,rgba(46,168,154,.22),transparent 60%),
+    radial-gradient(700px circle at 50% 110%,rgba(232,84,122,.2),transparent 60%),
+    var(--cream);
+  border:1px solid rgba(47,51,39,.13);
+  box-shadow:var(--shadow-l);
+}
+.contact h2{font-size:clamp(2rem,4.4vw,3.5rem);max-width:16ch;margin:18px auto 0}
+.contact p{color:var(--muted);max-width:48ch;margin:20px auto 0}
+.contact__actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
+.contact__phone{display:block;margin-top:20px;font-size:.95rem;font-weight:600}
+.star{position:absolute;animation:tw 3.4s ease-in-out infinite}
+@keyframes tw{0%,100%{transform:scale(.85) rotate(0);opacity:.55}50%{transform:scale(1.12) rotate(18deg);opacity:1}}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid rgba(47,51,39,.12);padding:32px 0 44px;margin-top:clamp(60px,8vw,110px)}
+.foot__in{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:flex-start;font-size:.85rem;color:var(--muted)}
+.foot__legal{margin:0;max-width:64ch;line-height:1.6}
+.foot__links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:600}
+.foot__links .sep{opacity:.45}
+.mailbtn{
+  background:none;border:0;padding:0;font:inherit;font-weight:700;color:var(--link);
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px;
+}
+.mailbtn:hover{color:var(--teal-dark)}
+.noscript-note{font-size:.82rem;color:var(--coral-dark);margin-top:12px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.rv.is-in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .hero__grid,.split,.week,.about,.case__in{grid-template-columns:1fr}
+  .hero__paneWrap{order:-1}
+  .about .portrait{order:-1;max-width:420px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .card{--drop:0px}
+  .split{border-radius:24px}
+  .split__side--back{border-left:0;border-top:3px dashed rgba(253,248,236,.28)}
+  .split__copy{max-width:none}
+  .case{position:static !important;margin-bottom:34px}
+  .case__in{padding:22px}
+  .week .weekgrid,.week .weekdays{max-width:100%}
+}
+@media (max-width:760px){
+  .nav__links,.nav__cta{display:none}
+  .menu-btn{display:inline-flex}
+  .cards{grid-template-columns:1fr}
+  .contact{border-radius:24px}
+  .brand__name{font-size:.92rem;white-space:nowrap}
+  .brand__name span{display:none}
+  .nav__in{gap:12px}
+}
+@media (max-width:420px){
+  .brand__name{font-size:.8rem}
+  .brand svg{width:32px;height:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition-duration:.01ms !important}
+  .rv{opacity:1;transform:none}
+  .hl{background-size:100% .3em}
+  .pane__sheen{display:none}
+}
+
+/* ---- is this you ---- */
+.fit{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+@media(max-width:900px){.fit{grid-template-columns:1fr;gap:32px}}
+.fitlist{list-style:none;margin:26px 0 0;padding:0}
+.fitlist li{position:relative;padding:14px 0 14px 46px;border-bottom:1px solid rgba(42,46,33,.1);font-size:1.06rem}
+.fitlist li:last-child{border-bottom:none}
+.fitlist li::before{content:"";position:absolute;left:6px;top:19px;width:20px;height:20px;border-radius:6px;border:2px solid #6f7d45;background:#fff}
+.fitlist li::after{content:"";position:absolute;left:11px;top:25px;width:10px;height:6px;border-left:2.4px solid #2ea89a;border-bottom:2.4px solid #2ea89a;transform:rotate(-45deg)}
+.fitclose{margin-top:26px;font-size:1.08rem}
+.fitclose b{font-family:'Fraunces',Georgia,serif;font-weight:600}
+
+/* ---- what happens next ---- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid rgba(42,46,33,.12);border-radius:18px;padding:28px 26px;position:relative;overflow:hidden}
+.step__n{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:2.4rem;line-height:1;color:var(--gold);display:block;margin-bottom:12px}
+.step h3{font-size:1.16rem;margin:0 0 10px}
+.step p{margin:0;font-size:1rem}
+.costnote{margin-top:34px;background:rgba(46,168,154,.09);border:1px dashed #237a70;border-radius:16px;padding:24px 28px;max-width:74ch}
+.costnote h3{font-size:1.14rem;margin:0 0 10px}
+.costnote p{margin:0}
+
+/* ---- things I will not do ---- */
+.wontlist{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px}
+.wontlist li{position:relative;padding-left:32px;font-size:1.02rem}
+.wontlist li::before{content:"";position:absolute;left:4px;top:9px;width:14px;height:2.6px;background:#e8547a;border-radius:2px}
+.wonthead{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.3rem;margin:38px 0 0;color:var(--head)}
+
+/* ---- mid page cta ---- */
+.midcta{margin-top:44px;text-align:center}
+
+/* ---------- hero before / after slider ---------- */
+.ba{
+  position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bone);
+  touch-action:pan-y;cursor:ew-resize;
+}
+.ba img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  user-select:none;-webkit-user-drag:none;pointer-events:none;
+}
+.ba__after{clip-path:inset(0 0 0 var(--pos,52%))}
+.ba__handle{
+  position:absolute;top:0;bottom:0;left:var(--pos,52%);width:3px;z-index:6;
+  background:rgba(253,248,236,.92);box-shadow:0 0 0 1px rgba(47,51,39,.4);
+  transform:translateX(-1.5px);
+}
+.ba__grip{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:48px;height:48px;border-radius:999px;background:var(--cream);
+  border:3px solid rgba(47,51,39,.82);display:grid;place-items:center;
+  box-shadow:0 8px 22px rgba(47,51,39,.3);color:var(--head);
+}
+.ba__handle:focus-visible{outline:none}
+.ba__handle:focus-visible .ba__grip{box-shadow:0 0 0 4px var(--teal),0 8px 22px rgba(47,51,39,.3)}
+.ba__lab{
+  position:absolute;top:14px;z-index:5;pointer-events:none;
+  font-family:Karla,sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:6px 13px;border-radius:999px;background:rgba(42,46,33,.74);color:var(--cream);
+  backdrop-filter:blur(3px);transition:opacity .3s ease;
+}
+.ba__lab--l{left:14px}
+.ba__lab--r{right:14px}
+@media (max-width:560px){
+  .ba__lab{font-size:.58rem;padding:5px 10px;top:10px}
+  .ba__grip{width:40px;height:40px}
+}
+
+/* ---------- week: toggle, kicker, legible caption ---------- */
+.weektoggle{
+  display:inline-flex;gap:5px;background:rgba(47,51,39,.07);padding:5px;
+  border-radius:999px;margin-top:26px;
+}
+.wbtn{
+  border:0;background:transparent;font-family:Karla,sans-serif;font-weight:700;font-size:.86rem;
+  padding:10px 20px;border-radius:999px;cursor:pointer;color:var(--muted);
+  transition:background .25s ease,color .25s ease,box-shadow .25s ease;
+}
+.wbtn:hover{color:var(--head)}
+.wbtn.is-on{background:var(--cream);color:var(--head);box-shadow:0 2px 9px rgba(47,51,39,.14)}
+.weekkicker{
+  margin-top:18px;font-family:Fraunces,Georgia,serif;font-size:1.08rem;color:var(--teal-dark);
+  opacity:0;transform:translateY(7px);transition:opacity .55s ease,transform .55s var(--spring);
+  font-variation-settings:"SOFT" 60,"WONK" 1;
+}
+.weekkicker.show{opacity:1;transform:none}
+.weekcap{font-size:.72rem;color:var(--muted);margin-top:14px;letter-spacing:.02em}
+
+/* ---------- soft proof ticker ---------- */
+.strip{
+  background:var(--sage);padding:15px 0;overflow:hidden;
+  border-top:1px solid rgba(47,51,39,.09);border-bottom:1px solid rgba(47,51,39,.09);
+}
+.strip__mask{
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+}
+.strip:hover .strip__track{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.strip__track{animation:none}}
+
+/* ---------- modals ---------- */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:18px}
+.modal.is-open{display:flex}
+.modal__veil{position:absolute;inset:0;background:rgba(42,46,33,.5);backdrop-filter:blur(3px);animation:mfade .28s ease}
+.modal__panel{
+  position:relative;z-index:1;width:100%;max-width:530px;
+  background:var(--cream);border:2px solid rgba(47,51,39,.78);border-radius:26px;
+  box-shadow:var(--shadow-l);padding:clamp(26px,4vw,40px);
+  max-height:calc(100vh - 36px);overflow-y:auto;
+  animation:mrise .4s var(--spring);
+}
+@keyframes mfade{from{opacity:0}}
+@keyframes mrise{from{opacity:0;transform:translateY(16px) scale(.975)}}
+.modal__x{
+  position:absolute;top:13px;right:13px;width:38px;height:38px;border-radius:999px;
+  border:1.5px solid rgba(47,51,39,.18);background:var(--cream);color:var(--ink);
+  cursor:pointer;display:grid;place-items:center;transition:.2s;
+}
+.modal__x:hover{border-color:var(--coral);color:var(--coral-dark);transform:rotate(90deg)}
+.modal h3{
+  font-family:Fraunces,serif;font-size:clamp(1.5rem,3.2vw,2.05rem);font-weight:600;
+  margin:14px 0 0;line-height:1.12;font-variation-settings:"SOFT" 60,"WONK" 1;
+}
+.modal__lede{color:var(--muted);font-size:1rem;margin:14px 0 0}
+.modal__alt{
+  margin-top:26px;padding-top:20px;border-top:1px solid rgba(47,51,39,.13);
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+}
+.modal__alt p{font-size:.88rem;color:var(--muted);margin:0;flex:1 1 190px}
+.modal__phone{font-family:Fraunces,serif;font-size:1.15rem;color:var(--teal-dark);text-decoration:none;font-weight:600}
+.modal__phone:hover{text-decoration:underline}
+
+/* labelled placeholder until the real embed arrives */
+/* a booking calendar needs room, so this one modal runs wider than the rest */
+#mCoffee .modal__panel{max-width:820px}
+.cal{
+  display:block;width:100%;min-height:680px;border:0;
+  margin-top:22px;border-radius:16px;background:#fff;
+  /* form_embed.js parks the iframe off screen to measure its content height and never
+     restores it, so win back everything it hides while leaving its height alone */
+  position:static!important;left:auto!important;top:auto!important;
+  opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+  overflow:hidden!important;
+}
+@media (max-width:600px){.cal{min-height:800px}}
+.calloading{padding:44px 20px;text-align:center;color:var(--muted);font-size:.9rem;margin:0}
+
+/* ---------- form ---------- */
+.f{display:grid;gap:15px;margin-top:24px}
+.f__row{margin:0}
+.f label{display:block;font-size:.8rem;font-weight:700;color:var(--head);margin-bottom:6px;letter-spacing:.01em}
+.f label span{color:var(--muted);font-weight:400}
+.f input,.f textarea{
+  width:100%;font-family:Karla,sans-serif;font-size:.97rem;color:var(--ink);
+  background:#fff;border:1.5px solid rgba(47,51,39,.2);border-radius:14px;padding:13px 15px;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.f textarea{min-height:118px;resize:vertical}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(46,168,154,.17)}
+.f .err{font-size:.77rem;color:var(--coral-dark);margin-top:5px;display:none}
+.f__row.is-bad input,.f__row.is-bad textarea{border-color:var(--coral);background:#fffafb}
+.f__row.is-bad .err{display:block}
+.f__send{margin-top:4px;justify-content:center}
+.f__note{font-size:.76rem;color:var(--muted);text-align:center;margin:0}
+.sent{
+  margin-top:22px;border:1.5px dashed var(--teal-dark);background:rgba(46,168,154,.1);
+  border-radius:18px;padding:24px;text-align:center;
+}
+.sent strong{font-family:Fraunces,serif;display:block;font-size:1.08rem;color:var(--head);margin-bottom:8px}
+/* iOS Safari zooms the page when a focused input is under 16px */
+@media (max-width:760px){
+  .f input,.f textarea{font-size:16px}
+}
+.sent p{font-size:.89rem;color:var(--muted);margin:0 auto 16px;max-width:36ch}
+</style>
+<style>
+.ha-img-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;background:#f4f4f5;border:1px dashed #d4d4d8;border-radius:8px;color:#71717a;font-size:12px;font-family:system-ui,sans-serif;min-height:80px;padding:16px;box-sizing:border-box;animation:ha-img-pulse 1.5s ease-in-out infinite}
+.ha-img-placeholder.ha-failed{animation:none;opacity:.7}
+@keyframes ha-img-pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@media(prefers-color-scheme:dark){.ha-img-placeholder{background:#27272a;border-color:#3f3f46;color:#a1a1aa}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main" style="position:absolute;left:-9999px">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="brand" href="#top" aria-label="Off The Wall Digital, home">
+      <svg width="40" height="40" viewBox="0 0 64 64" aria-hidden="true">
+        <g transform="rotate(-8 32 32)">
+          <rect x="14" y="14" width="36" height="36" rx="10" fill="none" stroke="#6f7d45" stroke-width="3.4"/>
+          <path d="M32 14v36M14 32h36" stroke="#6f7d45" stroke-width="1.9" opacity=".42"/>
+          <path d="M40 42c0-7 4.6-10.5 9.2-10.5C49.2 38.5 45.4 42 40 42z" fill="#2ea89a"/>
+          <circle cx="21.5" cy="21.5" r="2.9" fill="#e8547a"/>
+        </g>
+      </svg>
+      <span class="brand__name">Off The Wall Digital<span>Ramsgate, Kent</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#what">What I do</a>
+      <a href="#fit">Is this you</a>
+      <a href="#how">How I work</a>
+      <a href="#work">Case studies</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn btn--primary btn--sm nav__cta" href="./book.html" data-coffee>Fancy a coffee?</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#what">What I do</a>
+    <a href="#fit">Is this you</a>
+    <a href="#how">How I work</a>
+    <a href="#work">Case studies</a>
+    <a href="#about">About</a>
+    <a class="btn btn--primary mobile-menu__cta" href="./book.html" data-coffee><svg class="btn__ico" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.2 7.4h10.6v4.4a4.2 4.2 0 0 1-4.2 4.2H7.4a4.2 4.2 0 0 1-4.2-4.2V7.4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13.8 8.8h1.7a2.3 2.3 0 0 1 0 4.6h-1.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M6.6 5c.5-.8.4-1.6 0-2.4M9.6 5c.5-.8.4-1.6 0-2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg> Fancy a coffee?</a>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="glow glow--a" aria-hidden="true"></div>
+  <div class="glow glow--b" aria-hidden="true"></div>
+  <div class="wrap hero__grid">
+    <div>
+      <span class="eyebrow"><i aria-hidden="true"></i>Websites, automation, real personality</span>
+      <h1>Your website should feel like <span class="hl">meeting you</span>.</h1>
+      <p class="hero__sub">Most of them read like a form. I build the kind that makes someone think &ldquo;yes, them&rdquo; before they have even picked up the phone. Then I take the paperwork behind it off your hands.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="./book.html" data-coffee><svg class="btn__ico" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.2 7.4h10.6v4.4a4.2 4.2 0 0 1-4.2 4.2H7.4a4.2 4.2 0 0 1-4.2-4.2V7.4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13.8 8.8h1.7a2.3 2.3 0 0 1 0 4.6h-1.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M6.6 5c.5-.8.4-1.6 0-2.4M9.6 5c.5-.8.4-1.6 0-2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg> Start with a coffee</a>
+        <a class="btn btn--ghost" href="#work">Take a look round</a>
+      </div>
+    </div>
+    <div class="hero__paneWrap">
+      <div class="pane" data-sheen>
+        <div class="pane__glass">
+          <div class="ba" id="ba">
+            <img class="ba__before" src="https://pub.hyperagent.com/api/published/pbf01M1KY23T2_2CW7PGD0DW11S8BT/hero-shut.jpg" alt="A shut, unlit shopfront on a grey morning, empty pavement, nobody stopping">
+            <img class="ba__after" src="https://pub.hyperagent.com/api/published/pbf01M1KY1Z57_J0C3WM97JT8WTF41/hero-open.jpg" alt="The same shopfront open at golden hour, warm light spilling out, people stopping to look in">
+            <span class="ba__lab ba__lab--l">Easy to miss</span>
+            <span class="ba__lab ba__lab--r">Hard to miss</span>
+            <div class="ba__handle" id="baHandle" role="slider" tabindex="0"
+                 aria-label="Compare the shut shopfront with the open one"
+                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="52">
+              <span class="ba__grip" aria-hidden="true">
+                <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+                  <path d="M7 1 2 6l5 5M13 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="pane__sheen" aria-hidden="true"></div>
+        </div>
+        <div class="pane__sill" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRIP ============ -->
+<div class="strip" aria-hidden="true">
+  <div class="strip__mask">
+    <div class="strip__track" id="strip"></div>
+  </div>
+</div>
+
+<!-- ============ MISSION ============ -->
+<section class="band band--bone">
+  <div class="wrap pull rv">
+    <div class="pullwrap">
+      <svg width="34" height="26" viewBox="0 0 34 26" fill="none" aria-hidden="true" style="margin:0 auto">
+        <path d="M13 2C6.5 5 2 10.5 2 17.5 2 21.6 4.7 24 8.2 24c3.3 0 5.8-2.3 5.8-5.5 0-3.1-2.2-5.3-5.2-5.3-.6 0-1.2.1-1.6.2C8.4 10.2 10.6 7.6 14.4 5.4L13 2zM31 2c-6.5 3-11 8.5-11 15.5 0 4.1 2.7 6.5 6.2 6.5 3.3 0 5.8-2.3 5.8-5.5 0-3.1-2.2-5.3-5.2-5.3-.6 0-1.2.1-1.6.2 1.2-3.2 3.4-5.8 7.2-8L31 2z" fill="#2ea89a"/>
+      </svg>
+      <p>Big companies pay millions to buy back their time. I think you deserve the same, at a fraction of the cost.</p>
+      <cite>Petro, founder</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT ============ -->
+<section class="band" id="what">
+  <div class="wrap">
+    <div class="shead rv">
+      <span class="eyebrow"><i aria-hidden="true"></i>What you get</span>
+      <h2>Three things change.</h2>
+    </div>
+    <p class="slede rv">Not a new website. A different week.</p>
+    <div class="cards rv">
+
+      <article class="card" style="--c:#e3b23c;--cwash:rgba(227,178,60,.13);--cstroke:#c9911f">
+        <div class="card__awning" aria-hidden="true"></div>
+        <div class="card__glass">
+          <span class="card__num" aria-hidden="true">01</span>
+          <svg class="card__art" width="78" height="72" viewBox="0 0 78 72" fill="none" aria-hidden="true">
+            <rect x="6" y="7" width="58" height="50" rx="8" stroke="#c9911f" stroke-width="2.4"/>
+            <path d="M35 7v50M6 32h58" stroke="#c9911f" stroke-width="1.6" opacity=".45"/>
+            <path d="M35 47s-13-7.6-13-16.2A7.2 7.2 0 0 1 35 26.6a7.2 7.2 0 0 1 13 4.2C48 39.4 35 47 35 47z" fill="#fdf8ec" stroke="#c9911f" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M4 63h62" stroke="#c9911f" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M69 16c1.6 3.4 3 4.8 6.4 6.4-3.4 1.6-4.8 3-6.4 6.4-1.6-3.4-3-4.8-6.4-6.4 3.4-1.6 4.8-3 6.4-6.4z" fill="#e3b23c"/>
+          </svg>
+          <h3>Your website sounds like you talking</h3>
+          <p>Not a brochure. Not a template with your logo dropped into it. The words, the feel, the four seconds before someone decides whether to ring you.</p>
+        </div>
+        <div class="card__sill" aria-hidden="true"></div>
+      </article>
+
+      <article class="card" style="--c:#2ea89a;--cwash:rgba(46,168,154,.13);--cstroke:#237a70">
+        <div class="card__awning" aria-hidden="true"></div>
+        <div class="card__glass">
+          <span class="card__num" aria-hidden="true">02</span>
+          <svg class="card__art" width="78" height="72" viewBox="0 0 78 72" fill="none" aria-hidden="true">
+            <path d="M60 12.5A28 28 0 0 0 11.6 24" stroke="#237a70" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="5 6"/>
+            <path d="M14 58.5A28 28 0 0 0 62.6 47" stroke="#237a70" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="5 6"/>
+            <path d="M11.6 15v9.4h9.4M62.6 56.4V47h-9.4" stroke="#237a70" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="20" y="26" width="38" height="24" rx="4.5" fill="#fdf8ec" stroke="#237a70" stroke-width="2.4"/>
+            <path d="m20.8 28.4 17 12.2c.7.5 1.7.5 2.4 0l17-12.2" stroke="#237a70" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="58" cy="49" r="7.4" fill="#fdf8ec" stroke="#2ea89a" stroke-width="2.4"/>
+            <path d="m54.8 49 2.4 2.4 4.2-4.6" stroke="#2ea89a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>The admin handles itself</h3>
+          <p>Enquiries answered, bookings in the diary, follow ups sent, records filed. Whether you are up a ladder or fast asleep.</p>
+        </div>
+        <div class="card__sill" aria-hidden="true"></div>
+      </article>
+
+      <article class="card" style="--c:#e8547a;--cwash:rgba(232,84,122,.12);--cstroke:#c23e63">
+        <div class="card__awning" aria-hidden="true"></div>
+        <div class="card__glass">
+          <span class="card__num" aria-hidden="true">03</span>
+          <svg class="card__art" width="78" height="72" viewBox="0 0 78 72" fill="none" aria-hidden="true">
+            <circle cx="36" cy="40" r="14" fill="#fdf8ec" stroke="#c23e63" stroke-width="2.4"/>
+            <path d="M36 33.5V40l4.6 2.8" stroke="#c23e63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M36 16v6M15.6 24.4l4.2 4.2M56.4 24.4l-4.2 4.2" stroke="#e8547a" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M6 58h64" stroke="#c23e63" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M14 58c0-5 3.4-8.6 7.6-8.6M62 58c0-5-3.4-8.6-7.6-8.6" stroke="#c23e63" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>
+            <path d="M66 30c1.4 3 2.6 4.2 5.6 5.6-3 1.4-4.2 2.6-5.6 5.6-1.4-3-2.6-4.2-5.6-5.6 3-1.4 4.2-2.6 5.6-5.6z" fill="#e8547a"/>
+          </svg>
+          <h3>You get your evenings back</h3>
+          <p>That is the actual point. Not the software. The Tuesday where you shut the laptop at six because there is nothing left to chase.</p>
+        </div>
+        <div class="card__sill" aria-hidden="true"></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ IS THIS YOU ============ -->
+<section class="band band--bone" id="fit">
+  <div class="wrap fit rv">
+    <div>
+      <span class="eyebrow"><i aria-hidden="true"></i>Is this you</span>
+      <h2 style="font-size:clamp(2rem,3.8vw,3.1rem);margin-top:18px">You will know within about three lines.</h2>
+      <p class="fitclose" style="margin-top:22px">Size does not come into it. One van or twelve, the problem is the same shape.</p>
+    </div>
+    <div>
+      <ul class="fitlist">
+        <li>You run the business, and you are also the one answering the phone.</li>
+        <li>Your website is old, borrowed, half finished, or does not exist.</li>
+        <li>You do have a system. The system is you.</li>
+        <li>You have been meaning to sort this out for roughly a year.</li>
+        <li>You are not short of work. You are short of hours.</li>
+      </ul>
+      <div class="midcta" style="text-align:left">
+        <a class="btn btn--primary" href="./book.html" data-coffee>That sounds like me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRONT / BACK OF HOUSE ============ -->
+<section class="band band--sage" id="how">
+  <div class="wrap">
+    <div class="shead rv">
+      <span class="eyebrow"><i aria-hidden="true"></i>How I work</span>
+      <h2>Front of house, then back of house</h2>
+    </div>
+    <p class="slede rv">Every business has two halves. The bit customers see, and the bit that keeps you at the kitchen table on a Sunday. I start with the first, because that is what brings people in. Then I go and fix the second.</p>
+
+    <div class="split rv">
+      <div class="split__side split__side--front">
+        <div class="split__copy">
+          <span class="split__label">Step one, front of house</span>
+          <h3>The window people look through</h3>
+          <p>Your site, your words, the feeling someone gets before they have spoken to a soul. It is you they are choosing, so it had better sound like you.</p>
+        </div>
+        <svg class="split__art" viewBox="18 4 444 316" role="img" aria-label="Illustration of a warmly lit shopfront at dusk, with a striped awning, a display in the window and light spilling onto the pavement">
+          <defs>
+            <radialGradient id="warmGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#e3b23c" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="#e3b23c" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff3d2"/>
+              <stop offset="55%" stop-color="#ffe9b6"/>
+              <stop offset="100%" stop-color="#ffdf9e"/>
+            </linearGradient>
+            <clipPath id="awningClip"><path d="M34 72h412l-26 46H60L34 72z"/></clipPath>
+            <clipPath id="winClip"><rect x="74" y="142" width="196" height="128" rx="6"/></clipPath>
+          </defs>
+
+          <ellipse cx="172" cy="200" rx="185" ry="145" fill="url(#warmGlow)"/>
+
+          <path d="M74 270h196l86 34H14l60-34z" fill="#e3b23c" opacity=".2"/>
+
+          <rect x="52" y="72" width="376" height="232" rx="6" fill="#fffaf0" stroke="#2f3327" stroke-width="3"/>
+
+          <g clip-path="url(#awningClip)">
+            <rect x="20" y="66" width="460" height="58" fill="#fdf8ec"/>
+            <g fill="#e8547a">
+              <rect x="34" y="66" width="30" height="58"/><rect x="94" y="66" width="30" height="58"/>
+              <rect x="154" y="66" width="30" height="58"/><rect x="214" y="66" width="30" height="58"/>
+              <rect x="274" y="66" width="30" height="58"/><rect x="334" y="66" width="30" height="58"/>
+              <rect x="394" y="66" width="30" height="58"/>
+            </g>
+          </g>
+          <path d="M34 72h412l-26 46H60L34 72z" fill="none" stroke="#2f3327" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M60 118q9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0 9 11 18 0" fill="none" stroke="#2f3327" stroke-width="2.4"/>
+
+          <rect x="74" y="142" width="196" height="128" rx="6" fill="url(#glass)" stroke="#2f3327" stroke-width="3"/>
+          <g clip-path="url(#winClip)">
+            <path d="M60 250l60-118h34L94 270z" fill="#fff" opacity=".38"/>
+            <path d="M150 250l44-118h20l-44 118z" fill="#fff" opacity=".26"/>
+            <g stroke="#2f3327" stroke-width="2.4" fill="none" stroke-linecap="round">
+              <path d="M112 238h36"/>
+              <path d="M118 238c-6-14-2-26 12-30 14 4 18 16 12 30" fill="#6f7d45" fill-opacity=".25"/>
+              <path d="M130 208v-16"/>
+              <path d="M130 196c-9-1-14-7-13-15 8-1 13 4 13 12" fill="#2ea89a" fill-opacity=".3"/>
+              <path d="M130 200c8-2 13-8 12-16-8-1-12 5-12 13" fill="#2ea89a" fill-opacity=".3"/>
+            </g>
+            <g stroke="#2f3327" stroke-width="2.4" fill="none">
+              <path d="M216 142v22"/>
+              <path d="M216 190c-9-7-14-13-14-19a7 7 0 0 1 14-4 7 7 0 0 1 14 4c0 6-5 12-14 19z" fill="#e8547a" fill-opacity=".65" stroke-linejoin="round"/>
+            </g>
+            <g stroke="#2f3327" stroke-width="2.4" fill="none">
+              <path d="M186 238h56"/>
+              <rect x="192" y="220" width="20" height="18" rx="2" fill="#fdf8ec"/>
+              <rect x="216" y="226" width="20" height="12" rx="2" fill="#fdf8ec"/>
+            </g>
+            <path d="M74 142h196" stroke="#2f3327" stroke-width="2" opacity=".35"/>
+            <path d="M172 142v128" stroke="#2f3327" stroke-width="2.2" opacity=".4"/>
+            <path d="M74 206h196" stroke="#2f3327" stroke-width="2.2" opacity=".4"/>
+          </g>
+
+          <g>
+            <rect x="300" y="146" width="94" height="124" rx="5" fill="#fdf8ec" stroke="#2f3327" stroke-width="3"/>
+            <rect x="313" y="158" width="68" height="46" rx="4" fill="url(#glass)" stroke="#2f3327" stroke-width="2.4"/>
+            <path d="M347 158v46" stroke="#2f3327" stroke-width="1.8" opacity=".4"/>
+            <rect x="322" y="216" width="50" height="20" rx="10" fill="none" stroke="#2ea89a" stroke-width="2.4"/>
+            <text x="347" y="230" text-anchor="middle" font-family="Karla,sans-serif" font-size="11" font-weight="700" fill="#237a70" letter-spacing=".08em">OPEN</text>
+            <circle cx="312" cy="250" r="4" fill="#2f3327"/>
+          </g>
+
+          <path d="M14 304h452" stroke="#2f3327" stroke-width="3.4" stroke-linecap="round"/>
+          <path d="M40 304v-6M120 304v-6M200 304v-6M280 304v-6M360 304v-6M440 304v-6" stroke="#2f3327" stroke-width="2" opacity=".3"/>
+
+          <g>
+            <path d="M406 304v-28h34v28z" fill="#fdf8ec" stroke="#2f3327" stroke-width="2.6"/>
+            <path d="M423 276v-14" stroke="#6f7d45" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="414" cy="258" r="9" fill="#6f7d45" fill-opacity=".3" stroke="#6f7d45" stroke-width="2.2"/>
+            <circle cx="431" cy="264" r="7" fill="#6f7d45" fill-opacity=".3" stroke="#6f7d45" stroke-width="2.2"/>
+          </g>
+
+          <path d="M424 26c1.8 4 3.4 5.6 7.4 7.4-4 1.8-5.6 3.4-7.4 7.4-1.8-4-3.4-5.6-7.4-7.4 4-1.8 5.6-3.4 7.4-7.4z" fill="#e3b23c"/>
+          <path d="M40 36c1.4 3.2 2.6 4.4 5.8 5.8-3.2 1.4-4.4 2.6-5.8 5.8-1.4-3.2-2.6-4.4-5.8-5.8 3.2-1.4 4.4-2.6 5.8-5.8z" fill="#e8547a"/>
+        </svg>
+      </div>
+
+      <div class="split__side split__side--back">
+        <div class="split__copy">
+          <span class="split__label">Step two, back of house</span>
+          <h3>The engine room nobody sees</h3>
+          <p>Quotes, invoices, reminders, records, the same reply you have typed a hundred times. All of it moving along without you nudging it.</p>
+        </div>
+        <svg class="split__art" viewBox="0 0 480 320" role="img" aria-label="Diagram of the back room: enquiries, bookings, invoices and follow ups all wired into one central record, running under a night sky">
+          <g opacity=".16" stroke="#fdf8ec" stroke-width="1.4">
+            <path d="M0 40h480M0 120h480M0 200h480M0 280h480"/>
+            <path d="M80 0v320M240 0v320M400 0v320"/>
+          </g>
+
+          <g>
+            <rect x="198" y="10" width="84" height="54" rx="8" fill="#5c6939" stroke="#fdf8ec" stroke-width="2.4"/>
+            <path d="M240 10v54M198 37h84" stroke="#fdf8ec" stroke-width="1.6" opacity=".45"/>
+            <path d="M254 26a11 11 0 1 0 8.5 18A13 13 0 0 1 254 26z" fill="#e3b23c"/>
+            <circle cx="216" cy="24" r="1.9" fill="#fdf8ec"/><circle cx="224" cy="46" r="1.6" fill="#fdf8ec"/><circle cx="209" cy="44" r="1.4" fill="#fdf8ec"/>
+          </g>
+
+          <g stroke="rgba(253,248,236,.34)" stroke-width="2.6" fill="none">
+            <path d="M144 109C186 109 176 140 176 158"/>
+            <path d="M336 109C294 109 304 140 304 158"/>
+            <path d="M144 261C186 261 176 230 176 190"/>
+            <path d="M336 261C294 261 304 230 304 190"/>
+          </g>
+          <g stroke-width="2.6" fill="none" stroke-linecap="round">
+            <path class="dash" d="M144 109C186 109 176 140 176 158" stroke="#e3b23c"/>
+            <path class="dash" d="M336 109C294 109 304 140 304 158" stroke="#e3b23c" style="animation-delay:-.4s"/>
+            <path class="dash" d="M144 261C186 261 176 230 176 190" stroke="#2ea89a" style="animation-delay:-.8s"/>
+            <path class="dash" d="M336 261C294 261 304 230 304 190" stroke="#e8547a" style="animation-delay:-1.2s"/>
+          </g>
+
+          <g>
+            <rect x="176" y="136" width="128" height="72" rx="14" fill="#5c6939" stroke="#fdf8ec" stroke-width="2.8"/>
+            <g stroke="#e3b23c" stroke-width="2.2" fill="none">
+              <ellipse cx="240" cy="158" rx="19" ry="7"/>
+              <path d="M221 158v14c0 3.9 8.5 7 19 7s19-3.1 19-7v-14"/>
+              <path d="M221 166c0 3.9 8.5 7 19 7s19-3.1 19-7"/>
+            </g>
+            <text class="node-label" x="240" y="196" text-anchor="middle">One set of records</text>
+          </g>
+
+          <g class="mod">
+            <rect x="18" y="84" width="126" height="50" rx="11" fill="#5c6939" stroke="#fdf8ec" stroke-width="2.4"/>
+            <path d="M34 101h20M34 109h28M34 117h14" stroke="#e3b23c" stroke-width="2.2" stroke-linecap="round"/>
+            <text class="node-label" x="96" y="113" text-anchor="middle">Enquiries</text>
+            <circle cx="144" cy="109" r="5" fill="#e3b23c"/>
+          </g>
+
+          <g class="mod">
+            <rect x="336" y="84" width="126" height="50" rx="11" fill="#5c6939" stroke="#fdf8ec" stroke-width="2.4"/>
+            <rect x="352" y="97" width="22" height="21" rx="3" fill="none" stroke="#e3b23c" stroke-width="2.2"/>
+            <path d="M352 104h22M358 93v6M368 93v6" stroke="#e3b23c" stroke-width="2.2" stroke-linecap="round"/>
+            <text class="node-label" x="412" y="113" text-anchor="middle">Bookings</text>
+            <circle cx="336" cy="109" r="5" fill="#e3b23c"/>
+          </g>
+
+          <g class="mod">
+            <rect x="18" y="236" width="126" height="50" rx="11" fill="#5c6939" stroke="#fdf8ec" stroke-width="2.4"/>
+            <path d="M35 247h20v28l-5-4-5 4-5-4-5 4z" fill="none" stroke="#2ea89a" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M41 256h8M41 263h8" stroke="#2ea89a" stroke-width="2" stroke-linecap="round"/>
+            <text class="node-label" x="102" y="265" text-anchor="middle">Invoices</text>
+            <circle cx="144" cy="261" r="5" fill="#2ea89a"/>
+          </g>
+
+          <g class="mod">
+            <rect x="336" y="236" width="126" height="50" rx="11" fill="#5c6939" stroke="#fdf8ec" stroke-width="2.4"/>
+            <path d="M352 250a13 13 0 1 1-3.6 9" fill="none" stroke="#e8547a" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M348 246v9h9" fill="none" stroke="#e8547a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text class="node-label" x="416" y="265" text-anchor="middle">Follow-ups</text>
+            <circle cx="336" cy="261" r="5" fill="#e8547a"/>
+          </g>
+
+          <g>
+            <path d="M240 208v56" stroke="rgba(253,248,236,.34)" stroke-width="2.6"/>
+            <path class="dash" d="M240 208v56" stroke="#fdf8ec" stroke-width="2.4" style="animation-delay:-.6s"/>
+            <rect x="222" y="264" width="36" height="26" rx="5" fill="#5c6939" stroke="#fdf8ec" stroke-width="2.4"/>
+            <circle cx="233" cy="274" r="2.4" fill="#e3b23c"/><circle cx="247" cy="274" r="2.4" fill="#e3b23c"/>
+            <path d="M231 282h18" stroke="#fdf8ec" stroke-width="2" stroke-linecap="round"/>
+            <text class="node-label" x="240" y="308" text-anchor="middle" opacity=".75">Running all night</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES ============ -->
+<section class="band" id="work">
+  <div class="wrap">
+    <div class="shead rv">
+      <span class="eyebrow"><i aria-hidden="true"></i>Case studies</span>
+      <h2>Four businesses. Four shorter to do lists.</h2>
+    </div>
+    <p class="slede rv">A bakery, a beauty studio, a heating firm, a coaching practice. Different worlds, same job. Give each one a window worth looking through, then take the admin off their plate.</p>
+
+    <div class="deck" id="deck">
+
+      <article class="case" style="--c:#e3b23c;top:104px">
+        <div class="case__awning" aria-hidden="true"></div>
+        <div class="case__in">
+          <a class="shopwin" href="https://www.mamassourdough.co.uk" target="_blank" rel="noopener noreferrer" aria-label="Visit the Mama's Sourdough website">
+            <div class="shopwin__bar" aria-hidden="true"><u style="background:#e8547a"></u><u style="background:#e3b23c"></u><u style="background:#2ea89a"></u><span class="shopwin__url">mamassourdough.co.uk</span></div>
+            <img src="https://pub.hyperagent.com/api/published/pbf01M1KP8T3K_VPWAR8HK4XX5WMZ5/mamas.jpg" alt="The Mama's Sourdough website homepage" loading="lazy" width="1600" height="1000">
+          </a>
+          <div>
+            <span class="case__sector">Artisan bakery, Ramsgate</span>
+            <h3>Mama's Sourdough</h3>
+            <p><b>Before.</b> Lucie was planning every week of baking and every delivery round by hand, on top of actually doing the baking.</p>
+            <p><b>Now.</b> The site takes the weekly orders. The CRM messages each customer as their order moves along. The stockist system sends Lucie her baking and delivery plan on its own, before she has thought to ask for it.</p>
+            <ul class="tags"><li>Website</li><li>Order system</li><li>CRM messaging</li><li>Stockist automation</li></ul>
+            <a class="case__link" href="https://www.mamassourdough.co.uk" target="_blank" rel="noopener noreferrer">Visit the site <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" style="--c:#e8547a;top:120px">
+        <div class="case__awning" aria-hidden="true"></div>
+        <div class="case__in">
+          <a class="shopwin" href="https://www.oceangazebeauty.co.uk" target="_blank" rel="noopener noreferrer" aria-label="Visit the Ocean Gaze Beauty website">
+            <div class="shopwin__bar" aria-hidden="true"><u style="background:#e8547a"></u><u style="background:#e3b23c"></u><u style="background:#2ea89a"></u><span class="shopwin__url">oceangazebeauty.co.uk</span></div>
+            <img src="https://pub.hyperagent.com/api/published/pbf01M1KP8TVB_EJMBDT64Q4BXPAFT/ocean-gaze.jpg" alt="The Ocean Gaze Beauty website homepage" loading="lazy" width="1600" height="1000">
+          </a>
+          <div>
+            <span class="case__sector">Beauty studio, Thanet</span>
+            <h3>Ocean Gaze Beauty</h3>
+            <p><b>Before.</b> The same questions about treatments, over and over, before anyone would book. Every new client meant details scribbled down and typed up later.</p>
+            <p><b>Now.</b> The site explains each treatment properly, so people arrive already sure. Bookings and records look after themselves in the CRM, and a QR code in the studio captures new client details on the spot.</p>
+            <ul class="tags"><li>Website</li><li>CRM and bookings</li><li>QR capture</li></ul>
+            <a class="case__link" href="https://www.oceangazebeauty.co.uk" target="_blank" rel="noopener noreferrer">Visit the site <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" style="--c:#2ea89a;top:136px">
+        <div class="case__awning" aria-hidden="true"></div>
+        <div class="case__in">
+          <a class="shopwin" href="https://www.boilerboss.co.uk" target="_blank" rel="noopener noreferrer" aria-label="Visit the Boiler Boss website">
+            <div class="shopwin__bar" aria-hidden="true"><u style="background:#e8547a"></u><u style="background:#e3b23c"></u><u style="background:#2ea89a"></u><span class="shopwin__url">boilerboss.co.uk</span></div>
+            <img src="https://pub.hyperagent.com/api/published/pbf01M1KP8VFR_B2VQZ6ZW32TX6ETY/boilerboss.jpg" alt="The Boiler Boss website homepage" loading="lazy" width="1600" height="1000">
+          </a>
+          <div>
+            <span class="case__sector">Heating engineers, Thanet</span>
+            <h3>Boiler Boss</h3>
+            <p><b>Before.</b> A working business rebuilding itself as a new one, with quotes, invoices and safety certificates all still being produced by hand after hours.</p>
+            <p><b>Now.</b> Phase one is live: a new brand, and a site built to turn callers into booked jobs. Phase two brings in the CRM and the accounting, so quotes, invoices and post job safety certificates write themselves.</p>
+            <ul class="tags"><li>Rebrand</li><li>Website</li><li>CRM and accounting, phase two</li></ul>
+            <a class="case__link" href="https://www.boilerboss.co.uk" target="_blank" rel="noopener noreferrer">Visit the site <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" style="--c:#6f7d45;top:152px">
+        <div class="case__awning" aria-hidden="true"></div>
+        <div class="case__in">
+          <a class="shopwin" href="https://igniteyouroffer.com" target="_blank" rel="noopener noreferrer" aria-label="Visit the Ignite Your Offer website">
+            <div class="shopwin__bar" aria-hidden="true"><u style="background:#e8547a"></u><u style="background:#e3b23c"></u><u style="background:#2ea89a"></u><span class="shopwin__url">igniteyouroffer.com</span></div>
+            <img src="https://pub.hyperagent.com/api/published/pbf01M1KP8VTJ_WAZ5RZP1WZG8RVWX/ignite.jpg" alt="The Ignite Your Offer website homepage" loading="lazy" width="1600" height="1000">
+          </a>
+          <div>
+            <span class="case__sector">Coaching and consulting</span>
+            <h3>Ignite Your Offer</h3>
+            <p><b>Before.</b> Enquiries arriving through several channels and several forms, nothing joining them up, and no simple way to see what had been answered.</p>
+            <p><b>Now.</b> A full rebrand from GBWI, starting with the site. The backend processes are digitised and tidied, and every channel and lead form lands in one place. Phase two connects it to a CRM.</p>
+            <ul class="tags"><li>Rebrand</li><li>Website</li><li>Backend processes</li><li>CRM, phase two</li></ul>
+            <a class="case__link" href="https://igniteyouroffer.com" target="_blank" rel="noopener noreferrer">Visit the site <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 6h13M9.5 1.5 14 6l-4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="midcta rv">
+      <a class="btn btn--primary" href="./book.html" data-coffee>Tell me about yours</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WEEK BACK ============ -->
+<section class="band band--bone">
+  <div class="wrap week rv" id="weekSection">
+    <div>
+      <span class="eyebrow"><i aria-hidden="true"></i>Your actual week</span>
+      <h2 style="font-size:clamp(2rem,3.8vw,3.2rem);margin-top:18px">None of the red is why you started.</h2>
+      <p class="slede" style="margin-top:20px">Chasing an enquiry at half nine at night. Copying a booking into three places. Typing the same reply for the hundredth time. It lands in your evenings and your Saturdays, and none of it needs you.</p>
+      <div class="weektoggle" role="group" aria-label="Switch between your week now and your week with the systems in">
+        <button type="button" class="wbtn is-on" data-week="before">Your week now</button>
+        <button type="button" class="wbtn" data-week="after">Hand it over</button>
+      </div>
+      <p class="weekkicker" id="weekKicker">Same week. You are just not the one doing it.</p>
+      <p class="disclaim">Illustration of the idea, not a measured claim.</p>
+    </div>
+    <div>
+      <div class="weekdays" aria-hidden="true">
+        <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+      </div>
+      <div class="weekgrid" id="weekgrid" role="img" aria-label="A grid of the hours in a week. The admin hours cluster in the evenings and at the weekend, and switch to running themselves when you hand them over"></div>
+      <p class="weekcap">Each column is a day. Each row is an hour, midnight at the top.</p>
+      <div class="legend">
+        <span><i style="background:rgba(47,51,39,.09)"></i>Your week</span>
+        <span><i style="background:#e8547a"></i>Admin doing you</span>
+        <span><i style="background:#2ea89a"></i>Running itself</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="band" id="about">
+  <div class="wrap about">
+    <div class="portrait rv">
+      <div class="pane" data-sheen>
+        <div class="pane__glass">
+          <img class="portrait__img" src="https://pub.hyperagent.com/api/published/pbf01M1KWW3B4_F74JXPGDBEF6TAE8/petro.jpg" alt="Petro Wall, founder of Off The Wall Digital, laughing in a garden in the late afternoon sun" width="896" height="1120" loading="lazy" decoding="async">
+          <div class="pane__sheen" aria-hidden="true"></div>
+        </div>
+        <div class="pane__sill" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="rv">
+      <span class="eyebrow"><i aria-hidden="true"></i>The person behind it</span>
+      <h2 style="font-size:clamp(2.1rem,4vw,3.4rem);margin-top:18px">About Petro</h2>
+      <p style="margin-top:24px">I spent twenty years in enterprise sales and customer success, at some of the largest system integrators and software providers going, helping big companies get more out of their systems and their people.</p>
+      <p>Here is the funny part. Those companies spend millions chasing exactly the thing you want. Time.</p>
+      <p>So now I do it for the people doing it all themselves, who just need someone in their corner. Off The Wall Digital is part of the Wall Media group, and I run it alongside my husband Colin. Every business I work with becomes a bit personal to me. Helping you shine, and get your life back, is honestly my favourite part of the job.</p>
+      <p class="wonthead">Things I will not do</p>
+      <ul class="wontlist">
+        <li>Sell you a system you do not need yet.</li>
+        <li>Talk to you in acronyms.</li>
+        <li>Build it, invoice it, and vanish.</li>
+        <li>Make your business sound like everybody else's.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ WHAT HAPPENS NEXT ============ -->
+<section class="band band--bone" id="next">
+  <div class="wrap rv">
+    <div class="shead">
+      <span class="eyebrow"><i aria-hidden="true"></i>No surprises</span>
+      <h2>What actually happens next</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step__n" aria-hidden="true">1</span>
+        <h3>We have a chat</h3>
+        <p>No slides, no script, no discovery framework. You tell me what is eating your week.</p>
+      </div>
+      <div class="step">
+        <span class="step__n" aria-hidden="true">2</span>
+        <h3>I tell you what I would do</h3>
+        <p>What I would fix first, what I would leave well alone for now, and roughly what that costs.</p>
+      </div>
+      <div class="step">
+        <span class="step__n" aria-hidden="true">3</span>
+        <h3>We start at the front</h3>
+        <p>If it makes sense, we begin with the front of house. If it does not, I will say so, and you have lost nothing but a conversation.</p>
+      </div>
+    </div>
+    <div class="costnote">
+      <h3>And what does it cost?</h3>
+      <p>Fair question, and I am not going to dodge it. Every business needs something a bit different, so there is no honest number I could put on this page. What I will do is tell you on the call roughly what your version costs, before you have committed to anything at all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="band" style="padding-top:0" id="book">
+  <div class="wrap">
+    <div class="contact rv">
+      <svg class="star" style="top:26px;left:34px" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.2 7.8L22 11l-7.8 2.2L12 21l-2.2-7.8L2 11l7.8-2.2L12 1z" fill="#e3b23c"/></svg>
+      <svg class="star" style="bottom:30px;right:40px;animation-delay:1.2s" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.2 7.8L22 11l-7.8 2.2L12 21l-2.2-7.8L2 11l7.8-2.2L12 1z" fill="#e8547a"/></svg>
+      <span class="eyebrow"><i aria-hidden="true"></i>Say hello</span>
+      <h2>Let's give you your evenings back.</h2>
+      <p>No pressure and no sales script. A coffee if you are local, a phone call if you are not. Just a conversation about what is slowing you down, and whether I am the right person to sort it.</p>
+      <div class="contact__actions">
+        <a class="btn btn--primary" href="./book.html" data-coffee>Put the kettle on</a>
+        <button class="btn btn--ghost" type="button" data-mail data-subject="Website enquiry">
+          Email Petro instead
+          <svg width="17" height="13" viewBox="0 0 20 15" fill="none" aria-hidden="true"><rect x="1" y="1" width="18" height="13" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="m1.8 2.4 7.5 5.6c.4.3 1 .3 1.4 0l7.5-5.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <a class="contact__phone" href="tel:+447775562102">07775 562102</a>
+      <noscript><p class="noscript-note">Scripts are switched off, so the email button will not open. Ring the number above instead.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODALS ============ -->
+<div class="modal" id="mCoffee" role="dialog" aria-modal="true" aria-labelledby="mCoffeeTitle" hidden>
+  <div class="modal__veil" data-close></div>
+  <div class="modal__panel">
+    <button class="modal__x" type="button" data-close aria-label="Close">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1.5 1.5l13 13M14.5 1.5l-13 13" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+    </button>
+    <span class="eyebrow"><i aria-hidden="true"></i>No sales script</span>
+    <h3 id="mCoffeeTitle">Let's put a coffee in the diary.</h3>
+    <p class="modal__lede">Pick whatever time suits you. A coffee if you are local to Ramsgate, a phone call if you are not. No deck, no script, and no pressure to decide anything on the spot.</p>
+
+    <p class="calloading" id="calLoading">Loading the calendar...</p>
+    <iframe class="cal" id="dqB0NblntdSZnLlpSFEz_1788453583961" hidden
+            data-src="https://api.leadconnectorhq.com/widget/booking/dqB0NblntdSZnLlpSFEz"
+            title="Pick a time with Petro" allow="payment" scrolling="no"></iframe>
+
+    <div class="modal__alt">
+      <p>Rather not book a slot?</p>
+      <a class="modal__phone" href="tel:+447775562102">07775 562102</a>
+      <button class="btn btn--ghost btn--sm" type="button" data-open="mEnquiry">Send a message instead</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="mEnquiry" role="dialog" aria-modal="true" aria-labelledby="mEnquiryTitle" hidden>
+  <div class="modal__veil" data-close></div>
+  <div class="modal__panel">
+    <button class="modal__x" type="button" data-close aria-label="Close">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1.5 1.5l13 13M14.5 1.5l-13 13" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+    </button>
+    <span class="eyebrow"><i aria-hidden="true"></i>Say hello</span>
+    <h3 id="mEnquiryTitle">What's on your mind?</h3>
+    <p class="modal__lede">Tell me a bit about the business and what is eating your week. I read every one of these myself.</p>
+
+    <form class="f" id="enquiryForm" novalidate>
+      <div class="f__row" id="rowName">
+        <label for="fName">Full name</label>
+        <input type="text" id="fName" name="name" autocomplete="name" required>
+        <p class="err">Pop your name in so I know who I am talking to.</p>
+      </div>
+      <div class="f__row" id="rowEmail">
+        <label for="fEmail">Email</label>
+        <input type="email" id="fEmail" name="email" autocomplete="email" required>
+        <p class="err">I need a working email address to reply to.</p>
+      </div>
+      <div class="f__row" id="rowPhone">
+        <label for="fPhone">Phone</label>
+        <input type="tel" id="fPhone" name="phone" autocomplete="tel" required>
+        <p class="err">I need a phone number I can reach you on.</p>
+      </div>
+      <div class="f__row" id="rowMsg">
+        <label for="fMsg">What's on your mind?</label>
+        <textarea id="fMsg" name="message" required></textarea>
+        <p class="err">Give me a line or two to go on.</p>
+      </div>
+      <button class="btn btn--primary f__send" type="submit">Send it to Petro</button>
+      <p class="f__note">No newsletter, no list, no passing your details on.</p>
+    </form>
+
+    <div class="sent" id="enquirySent" hidden>
+      <strong id="sentTitle">Thank you, that is with Petro.</strong>
+      <p id="sentBody">She will come back to you herself, usually the same day.</p>
+      <button class="btn btn--ghost btn--sm" type="button" id="sentAlt" hidden></button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="foot__legal">&copy; <span id="yr">2026</span> Off The Wall Digital, a trading name of Wall Media Ltd. Registered in England and Wales, company number 15045668. Registered office: Longfrey Cottage, Dorking Road, Chilworth, Surrey, GU4 8RH.</p>
+    <div class="foot__links">
+      <a href="https://pub.hyperagent.com/p/VcISDuZjw3AJvOqtiQ2IrQj6RofvGWFHAoXg8-u4h4U#privacy" target="_blank" rel="noopener noreferrer">Privacy notice</a>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <a href="https://pub.hyperagent.com/p/VcISDuZjw3AJvOqtiQ2IrQj6RofvGWFHAoXg8-u4h4U#terms" target="_blank" rel="noopener noreferrer">Terms of use</a>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <button class="mailbtn" type="button" data-mail data-subject="Website enquiry">Email us</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ------------------------------------------------------------------
+     ENQUIRY_WEBHOOK : the URL the enquiry form should POST its JSON to.
+                       Leave empty and the form hands the enquiry over by email instead.
+     Booking is a separate page, book.html, with the LeadConnector calendar embedded.
+     ------------------------------------------------------------------ */
+  var ENQUIRY_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/07mnL9ovLQrWpRw1FYBB/webhook-trigger/22afcb61-c1d9-4225-a787-fe1ef3ba600f';
+
+  /* email assembled at runtime so no harvestable address sits in the source */
+  var user = ['pe','tro'], host = ['wallmedia','co','uk'];
+  var addr = user.join('') + String.fromCharCode(64) + host.join('.');
+  var MAILTO = String.fromCharCode(109,97,105,108,116,111,58);
+
+  /* proof ticker: real clients and what actually changed for them */
+  var roll = [
+    ['Mama\u2019s Sourdough','weekly ordering that runs itself'],
+    ['Ocean Gaze Beauty','bookings that look after themselves'],
+    ['Boiler Boss','quotes and certificates that write themselves'],
+    ['Ignite Your Offer','every enquiry landing in one place']
+  ];
+  var strip = document.getElementById('strip');
+  if (strip){
+    var html = '';
+    for (var r=0;r<2;r++){
+      for (var i=0;i<roll.length;i++){
+        html += '<span><b>'+roll[i][0]+'</b><em>'+roll[i][1]+'</em><i></i></span>';
+      }
+    }
+    strip.innerHTML = html + html;
+  }
+
+  /* ---------------- modals ---------------- */
+  var lastFocus = null;
+  var FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select,[tabindex]:not([tabindex="-1"])';
+
+  function openModal(id, trigger){
+    var mo = document.getElementById(id);
+    if (!mo) return;
+    var others = document.querySelectorAll('.modal.is-open');
+    for (var o=0;o<others.length;o++){ others[o].classList.remove('is-open'); others[o].hidden = true; }
+    if (trigger) lastFocus = trigger;
+    mo.hidden = false;
+    mo.classList.add('is-open');
+    document.documentElement.style.overflow = 'hidden';
+    if (id === 'mEnquiry') resetEnquiry();
+    if (id === 'mCoffee') initCalendar();
+    var f = mo.querySelector('input,textarea') || mo.querySelector(FOCUSABLE);
+    if (f) setTimeout(function(){ f.focus(); }, 40);
+  }
+  function closeModal(mo){
+    if (!mo) return;
+    mo.classList.remove('is-open');
+    mo.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function openTop(){ return document.querySelector('.modal.is-open'); }
+
+  document.addEventListener('click', function(ev){
+    var t = ev.target;
+    var coffee = t.closest ? t.closest('[data-coffee]') : null;
+    if (coffee && canEmbedCalendar){
+      ev.preventDefault();
+      openModal('mCoffee', coffee);
+      return;
+    }
+    var mail = t.closest ? t.closest('[data-mail]') : null;
+    if (mail){ ev.preventDefault(); openModal('mEnquiry', mail); return; }
+    var opener = t.closest ? t.closest('[data-open]') : null;
+    if (opener){ ev.preventDefault(); openModal(opener.getAttribute('data-open'), opener); return; }
+    var closer = t.closest ? t.closest('[data-close]') : null;
+    if (closer){ ev.preventDefault(); closeModal(closer.closest('.modal')); }
+  });
+
+  document.addEventListener('keydown', function(ev){
+    var mo = openTop();
+    if (!mo) return;
+    if (ev.key === 'Escape'){ closeModal(mo); return; }
+    if (ev.key === 'Tab'){
+      var items = mo.querySelectorAll(FOCUSABLE);
+      if (!items.length) return;
+      var first = items[0], last = items[items.length-1];
+      if (ev.shiftKey && document.activeElement === first){ ev.preventDefault(); last.focus(); }
+      else if (!ev.shiftKey && document.activeElement === last){ ev.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* Booking calendar, loaded on first open rather than on every page view.
+     The resizer script is appended as a real element, because a script injected
+     through innerHTML would never execute. */
+  /* ---------------- booking ----------------
+     The calendar sits inside the coffee modal, which is the intended experience.
+     It needs browser storage, and sandboxed preview hosts block it, so:
+       storage available  -> open the modal with the calendar embedded
+       storage blocked    -> let the link through to the standalone booking page
+     Either way nobody meets a dead end, and with JavaScript off the link still works. */
+  var BOOK_PREVIEW = 'https://pub.hyperagent.com/p/049mJa13y5UcnejWQ-isFxy2jN6TGKx4R-D59KvkEok';
+  var CAL_RESIZER = 'https://link.msgsndr.com/js/form_embed.js';
+
+  function storageAvailable(){
+    try { localStorage.setItem('__owd','1'); localStorage.removeItem('__owd'); return true; }
+    catch (e){ return false; }
+  }
+  var canEmbedCalendar = storageAvailable();
+
+  /* on a preview host the standalone page lives at its own published URL */
+  if (location.hostname.indexOf('hyperagent.com') > -1){
+    var bookLinks = document.querySelectorAll('[data-coffee]');
+    for (var bl=0; bl<bookLinks.length; bl++){ bookLinks[bl].href = BOOK_PREVIEW; }
+  }
+
+  var calStarted = false;
+  function initCalendar(){
+    if (calStarted) return;
+    calStarted = true;
+    var frame = document.getElementById('dqB0NblntdSZnLlpSFEz_1788453583961');
+    var loading = document.getElementById('calLoading');
+    if (!frame) return;
+
+    frame.hidden = false;
+    frame.src = frame.getAttribute('data-src');
+    frame.addEventListener('load', function(){ if (loading) loading.hidden = true; });
+
+    /* appended as a real element, because a script set through innerHTML never runs */
+    var sc = document.createElement('script');
+    sc.src = CAL_RESIZER;
+    sc.async = true;
+    document.body.appendChild(sc);
+
+    /* if it never renders, hand over to the standalone page rather than sit on an empty box */
+    setTimeout(function(){
+      if (frame.getBoundingClientRect().height < 260){
+        window.location.href = document.querySelector('[data-coffee]').href;
+      }
+    }, 9000);
+  }
+
+  /* ---------------- enquiry form ---------------- */
+  function resetEnquiry(){
+    var f = document.getElementById('enquiryForm');
+    var st = document.getElementById('enquirySent');
+    if (!f || !st) return;
+    var wasSent = !st.hidden;
+    st.hidden = true;
+    f.hidden = false;
+    var rows = f.querySelectorAll('.f__row');
+    for (var r=0;r<rows.length;r++){ rows[r].classList.remove('is-bad'); }
+    var sb = f.querySelector('button[type="submit"]');
+    if (sb){ sb.disabled = false; sb.textContent = 'Send it to Petro'; }
+    if (wasSent) f.reset();
+  }
+
+  var eForm = document.getElementById('enquiryForm');
+  if (eForm){
+    var sent = document.getElementById('enquirySent');
+    var sentTitle = document.getElementById('sentTitle');
+    var sentBody = document.getElementById('sentBody');
+    var sentAlt = document.getElementById('sentAlt');
+
+    function bad(rowId, on){
+      var row = document.getElementById(rowId);
+      if (row) row.classList.toggle('is-bad', !!on);
+      return !on;
+    }
+
+    eForm.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var name = eForm.name.value.trim();
+      var email = eForm.email.value.trim();
+      var phone = eForm.phone.value.trim();
+      var msg = eForm.message.value.trim();
+
+      var ok = true;
+      ok = bad('rowName', name.length < 2) && ok;
+      ok = bad('rowEmail', !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) && ok;
+      ok = bad('rowPhone', !/^[0-9+()\s.-]{7,}$/.test(phone)) && ok;
+      ok = bad('rowMsg', msg.length < 4) && ok;
+      if (!ok){
+        var firstBad = eForm.querySelector('.is-bad input, .is-bad textarea');
+        if (firstBad) firstBad.focus();
+        return;
+      }
+
+      var parts = name.split(/\s+/);
+      var payload = {
+        name: name,
+        first_name: parts[0] || name,
+        last_name: parts.length > 1 ? parts.slice(1).join(' ') : '',
+        email: email,
+        phone: phone,
+        message: msg,
+        source: 'offthewalldigital.com contact form',
+        page: location.href,
+        submitted_at: new Date().toISOString()
+      };
+
+      function showSent(title, body, altLabel, altHref){
+        eForm.hidden = true;
+        sentTitle.textContent = title;
+        sentBody.textContent = body;
+        if (altLabel){
+          sentAlt.hidden = false;
+          sentAlt.textContent = altLabel;
+          sentAlt.onclick = function(){ window.location.href = altHref; };
+        } else {
+          sentAlt.hidden = true;
+        }
+        sent.hidden = false;
+      }
+
+      if (ENQUIRY_WEBHOOK){
+        var btn = eForm.querySelector('button[type="submit"]');
+        btn.disabled = true; btn.textContent = 'Sending...';
+        fetch(ENQUIRY_WEBHOOK, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(payload)
+        }).then(function(res){
+          if (!res.ok) throw new Error('bad status');
+          showSent('Thank you, that is with Petro.', 'She will come back to you herself, usually the same day.');
+        }).catch(function(){
+          btn.disabled = false; btn.textContent = 'Send it to Petro';
+          showSent('That did not go through.',
+                   'Something went wrong at our end. Send the same details by email and nothing is lost.',
+                   'Email it to Petro instead',
+                   MAILTO + addr + '?subject=' + encodeURIComponent('Website enquiry')
+                     + '&body=' + encodeURIComponent(name + '\n' + email + '\n' + phone + '\n\n' + msg));
+        });
+      } else {
+        /* no webhook wired up yet, so hand the enquiry over by email rather than lose it */
+        showSent('This form is not connected yet.',
+                 'The details you typed are ready to send by email instead, so nothing gets lost.',
+                 'Send it by email',
+                 MAILTO + addr + '?subject=' + encodeURIComponent('Website enquiry')
+                   + '&body=' + encodeURIComponent(name + '\n' + email + '\n' + phone + '\n\n' + msg));
+      }
+    });
+  }
+
+  /* nav */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('is-stuck', window.scrollY > 8); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var mb = document.getElementById('menuBtn'), mm = document.getElementById('mobileMenu');
+  mb.addEventListener('click', function(){
+    var open = mm.classList.toggle('open');
+    mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mm.addEventListener('click', function(e){ if (e.target.tagName === 'A'){ mm.classList.remove('open'); mb.setAttribute('aria-expanded','false'); } });
+
+  /* week grid: the admin hours deliberately land in evenings and at the weekend */
+  var wg = document.getElementById('weekgrid');
+  if (wg){
+    /* [day 0=Mon .. 6=Sun, hour 0-23] */
+    var ADMIN = [
+      [0,13],[0,19],[0,20],[0,21],
+      [1,18],[1,19],[1,21],[1,22],
+      [2,8],[2,20],[2,21],
+      [3,15],[3,18],[3,19],[3,20],[3,22],
+      [4,12],[4,19],[4,21],
+      [5,9],[5,10],[5,11],
+      [6,10],[6,11],[6,16],[6,20]
+    ];
+    var isAdmin = {};
+    for (var p=0;p<ADMIN.length;p++){ isAdmin[ADMIN[p][1]*7 + ADMIN[p][0]] = 1; }
+
+    var frag = document.createDocumentFragment();
+    for (var c=0;c<168;c++){
+      var b = document.createElement('b');
+      if (isAdmin[c]){
+        b.className = 'admin';
+        /* sweep from the top left so the change reads as a wave, not a flash */
+        b.style.transitionDelay = (Math.floor(c/7)*16 + (c%7)*34) + 'ms';
+      }
+      frag.appendChild(b);
+    }
+    wg.appendChild(frag);
+
+    var kicker = document.getElementById('weekKicker');
+    var wbtns = document.querySelectorAll('.wbtn');
+    var touched = false, autoTimer = null;
+
+    function setWeek(state){
+      wg.classList.toggle('is-after', state === 'after');
+      if (kicker) kicker.classList.toggle('show', state === 'after');
+      for (var i=0;i<wbtns.length;i++){
+        wbtns[i].classList.toggle('is-on', wbtns[i].getAttribute('data-week') === state);
+      }
+    }
+    setWeek('before');
+
+    for (var i=0;i<wbtns.length;i++){
+      (function(btn){
+        btn.addEventListener('click', function(){
+          touched = true;
+          if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+          setWeek(btn.getAttribute('data-week'));
+        });
+      })(wbtns[i]);
+    }
+
+    /* let the red sit long enough to be read, then demonstrate the switch once */
+    if (!reduce && 'IntersectionObserver' in window){
+      var wio = new IntersectionObserver(function(entries){
+        for (var e=0;e<entries.length;e++){
+          if (entries[e].isIntersecting){
+            wio.disconnect();
+            autoTimer = setTimeout(function(){ if (!touched) setWeek('after'); }, 2200);
+          }
+        }
+      }, {threshold:.45});
+      wio.observe(wg);
+    }
+  }
+
+  /* hero before / after slider */
+  var ba = document.getElementById('ba');
+  if (ba){
+    var baHandle = document.getElementById('baHandle');
+    var pos = 52, dragging = false, baTouched = false;
+
+    function setPos(v){
+      pos = v < 0 ? 0 : (v > 100 ? 100 : v);
+      ba.style.setProperty('--pos', pos + '%');
+      baHandle.setAttribute('aria-valuenow', Math.round(pos));
+    }
+    setPos(52);
+
+    function posFrom(e){
+      var r = ba.getBoundingClientRect();
+      if (!r.width) return;
+      setPos(((e.clientX - r.left) / r.width) * 100);
+    }
+    ba.addEventListener('pointerdown', function(e){
+      dragging = true; baTouched = true;
+      if (ba.setPointerCapture && e.pointerId != null){ try { ba.setPointerCapture(e.pointerId); } catch(_e){} }
+      posFrom(e); e.preventDefault();
+    });
+    ba.addEventListener('pointermove', function(e){ if (dragging) posFrom(e); });
+    window.addEventListener('pointerup', function(){ dragging = false; });
+    window.addEventListener('pointercancel', function(){ dragging = false; });
+
+    baHandle.addEventListener('keydown', function(e){
+      var step = e.shiftKey ? 12 : 4, used = true;
+      if (e.key === 'ArrowLeft' || e.key === 'Left') setPos(pos - step);
+      else if (e.key === 'ArrowRight' || e.key === 'Right') setPos(pos + step);
+      else if (e.key === 'Home') setPos(0);
+      else if (e.key === 'End') setPos(100);
+      else used = false;
+      if (used){ baTouched = true; e.preventDefault(); }
+    });
+
+    /* one slow sweep on first view so it is obvious the handle moves */
+    if (!reduce && 'IntersectionObserver' in window){
+      var bio = new IntersectionObserver(function(entries){
+        for (var e2=0;e2<entries.length;e2++){
+          if (entries[e2].isIntersecting){
+            bio.disconnect();
+            setTimeout(function(){
+              if (baTouched) return;
+              var from = 82, to = 44, dur = 1600, t0 = null;
+              setPos(from);
+              requestAnimationFrame(function step(ts){
+                if (baTouched) return;
+                if (t0 === null) t0 = ts;
+                var k = (ts - t0) / dur; if (k > 1) k = 1;
+                var eased = k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3) / 2;
+                setPos(from + (to - from) * eased);
+                if (k < 1) requestAnimationFrame(step);
+              });
+            }, 420);
+          }
+        }
+      }, {threshold:.35});
+      bio.observe(ba);
+    }
+  }
+
+  /* reveals */
+  var rvs = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, {rootMargin:'0px 0px -12% 0px', threshold:0.08});
+    for (var k=0;k<rvs.length;k++){ io.observe(rvs[k]); }
+  } else {
+    for (var j=0;j<rvs.length;j++){ rvs[j].classList.add('is-in'); }
+  }
+
+  /* cursor sheen on window panes */
+  if (!reduce && window.matchMedia('(hover: hover)').matches){
+    var panes = document.querySelectorAll('[data-sheen]');
+    for (var n=0;n<panes.length;n++){
+      (function(pane){
+        var sheen = pane.querySelector('.pane__sheen');
+        if (!sheen) return;
+        pane.addEventListener('mousemove', function(e){
+          var r = pane.getBoundingClientRect();
+          sheen.style.setProperty('--mx', (((e.clientX - r.left)/r.width)*100).toFixed(1)+'%');
+          sheen.style.setProperty('--my', (((e.clientY - r.top)/r.height)*100).toFixed(1)+'%');
+          sheen.style.opacity = '1';
+        });
+        pane.addEventListener('mouseleave', function(){ sheen.style.opacity = '.35'; });
+      })(panes[n]);
+    }
+  }
+})();
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ install. Open either file in a browser and it works.
 | File | What it is |
 | --- | --- |
 | `index.html` | The whole marketing site: hero, outcomes, "Is this you", front of house / back of house, four case studies, the week graphic, About, and the contact section. |
-| `book.html` | Standalone booking page with the LeadConnector calendar embedded. Doubles as a shareable direct booking link. |
+| `thanks.html` | Post-booking thank you page. Set this as the calendar's redirect URL in GoHighLevel. Marked `noindex`. |
 
 ## Opening it
 
@@ -28,10 +28,12 @@ python3 -m http.server 8000
 Both files sit at the repo root, so any static host works. On GitHub Pages, serve from
 `main` / root and `index.html` is picked up automatically. Vercel needs no config either.
 
-`index.html` links to booking with `href="./book.html"`, which is correct as soon as both
-files are on the same domain. There is a small guard in the script that swaps those links
-to a published preview URL when the hostname contains `hyperagent.com`; it is inert on the
-real domain and can be deleted once the site is live.
+Booking happens in a popup, so there is no separate booking page. The coffee links carry
+the calendar URL as their `href`, which only comes into play when scripts are off or
+browser storage is blocked. Nothing needs editing for deployment.
+
+Set `thanks.html` as the calendar's redirect URL in GoHighLevel so people land somewhere
+of ours after booking rather than on a LeadConnector confirmation screen.
 
 ## Integrations
 
@@ -42,13 +44,19 @@ The widget needs browser storage. The site checks for it before deciding what to
 
 - storage available (a normal domain) → the calendar opens embedded in the coffee popup
 - storage blocked (sandboxed preview hosts) → the popup is skipped and the coffee links
-  fall through to `book.html`, which redirects to the calendar
-- JavaScript off → the links are ordinary hrefs, so `book.html` still loads
+  behave as ordinary links straight to the calendar
+- JavaScript off → same, the `href` does the work
 
 `form_embed.js` parks the iframe off screen to measure its content height and does not
 restore it, so `.cal` reclaims `position`, `opacity`, `visibility` and `pointer-events`
 with `!important` while leaving the height the script calculates alone. Do not remove
 those overrides or the calendar will load invisibly.
+
+There is a nine second safety net that redirects to the calendar if the widget never
+renders at all. It is guarded on the modal still being open, and cleared both on iframe
+load and on modal close. Those guards matter: a closed modal is `display:none`, so the
+iframe measures zero height, and without them the timer fires and navigates away from
+whatever the visitor moved on to.
 
 **Enquiry form.** Posts JSON to a GoHighLevel inbound webhook. The URL is the
 `ENQUIRY_WEBHOOK` constant near the top of the script block. Payload:

@@ -1,8 +1,8 @@
 # Off The Wall Digital, "The Window"
 
 Marketing site for Off The Wall Digital (Petro Wall, Ramsgate, Kent), a trading name of
-Wall Media Ltd. Two self-contained static HTML files, no build step, no dependencies to
-install. Open either file in a browser and it works.
+Wall Media Ltd. Self-contained static HTML, no build step, no dependencies to install.
+Open any of the files in a browser and it works.
 
 ## Files
 
@@ -10,6 +10,7 @@ install. Open either file in a browser and it works.
 | --- | --- |
 | `index.html` | The whole marketing site: hero, outcomes, "Is this you", front of house / back of house, four case studies, the week graphic, About, and the contact section. |
 | `thanks.html` | Post-booking thank you page. Set this as the calendar's redirect URL in GoHighLevel. Marked `noindex`. |
+| `privacy.html` | Combined privacy notice and terms of use, tabbed, deep linkable at `#privacy` and `#terms`. |
 
 ## Opening it
 
@@ -25,7 +26,7 @@ python3 -m http.server 8000
 
 ## Deployment
 
-Both files sit at the repo root, so any static host works. On GitHub Pages, serve from
+All files sit at the repo root, so any static host works. On GitHub Pages, serve from
 `main` / root and `index.html` is picked up automatically. Vercel needs no config either.
 
 Booking happens in a popup, so there is no separate booking page. The coffee links carry
@@ -95,6 +96,13 @@ pre-filled with everything they typed, so an enquiry is never lost silently. Set
 - **SVG line art, never emoji.**
 - Calls to action are coffee invitations that warm up down the page: "Fancy a coffee?",
   "Start with a coffee", "That sounds like me", "Tell me about yours", "Put the kettle on".
+
+## Images are still hosted externally
+
+The seven images (`hero-open`, `hero-shut`, the four case study screenshots and Petro's
+portrait) are still served from `pub.hyperagent.com`. They work, but they are an external
+dependency the site should not have. Download them into an `assets/` folder and repoint
+the `src` attributes before this goes anywhere permanent.
 
 ## Still outstanding
 

@@ -29,10 +29,31 @@ Hosted on **Vercel**, serving this repo. Confirmed from the live response header
 **Never push to `main`.** Main is production and deploys immediately.
 
 The workflow for every change is: create a branch, commit there, open a pull request. Vercel
-builds a preview deployment for the branch automatically, which is the URL to show Petro. Only
-merge once she has said yes. Merging to main is what puts it live.
+builds a preview deployment for the branch automatically and posts the URL as a comment on the
+pull request. Only merge once Petro has said yes. Merging to main is what puts it live.
 
 There is no vercel.json and none is needed.
+
+### The preview URL is not publicly viewable as things stand
+
+Verified on 4 September 2026 by opening a real preview URL from outside the account: it
+returns Vercel's own login page rather than the site. Deployment Protection is switched on for
+this Vercel team, so a preview can only be opened by someone signed in to Vercel with access.
+
+**Never send a raw preview URL to a client.** They will see a login screen, assume the site is
+broken, and lose confidence in the whole thing.
+
+Until this is resolved in the Vercel dashboard, a change cannot be shown to Petro on a preview
+link, and the options are to screenshot the preview and send the images, or to hold the change
+until the account setting is sorted. The fix is one of:
+
+- turn Deployment Protection off for preview deployments, making preview URLs open to anyone
+  holding the link;
+- enable Protection Bypass for Automation, which produces a secret that can be appended to a
+  preview URL so a recipient without a Vercel account can open it. Better than the first
+  option, because previews stay closed to anything that has not been handed the link.
+
+Whichever is chosen, record it here.
 
 ---
 

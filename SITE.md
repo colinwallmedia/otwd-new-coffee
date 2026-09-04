@@ -26,34 +26,42 @@ assembled from arrays that are split differently in different files.
 Hosted on **Vercel**, serving this repo. Confirmed from the live response headers on
 4 September 2026: the apex redirects 308 to www, and both are served by Vercel.
 
-**Never push to `main`.** Main is production and deploys immediately.
-
-The workflow for every change is: create a branch, commit there, open a pull request. Vercel
-builds a preview deployment for the branch automatically and posts the URL as a comment on the
-pull request. Only merge once Petro has said yes. Merging to main is what puts it live.
+Pushing to `main` deploys straight to production. **On this site that is the agreed way of
+working**, decided by Colin on 4 September 2026. Commit to main, let it go live, then show
+Petro. Do not open branches and pull requests for ordinary changes here.
 
 There is no vercel.json and none is needed.
 
-### The preview URL is not publicly viewable as things stand
+### Why this site works differently from a client site
 
-Verified on 4 September 2026 by opening a real preview URL from outside the account: it
-returns Vercel's own login page rather than the site. Deployment Protection is switched on for
-this Vercel team, so a preview can only be opened by someone signed in to Vercel with access.
+Everywhere else the rule is: change on a preview, show it, then go live. Here it is: change
+it, then show it. Two reasons that is acceptable on this site specifically.
 
-**Never send a raw preview URL to a client.** They will see a login screen, assume the site is
-broken, and lose confidence in the whole thing.
+Petro owns this site. She is not a client waiting to be reassured, she is the person who would
+have approved it anyway, and a wrong change costs the business nothing but a minute.
 
-Until this is resolved in the Vercel dashboard, a change cannot be shown to Petro on a preview
-link, and the options are to screenshot the preview and send the images, or to hold the change
-until the account setting is sorted. The fix is one of:
+And a preview link would not work here in any case. Deployment Protection is switched on for
+this Vercel team, verified on 4 September 2026 by opening a real preview URL from outside the
+account: it returns Vercel's own login page rather than the site. Anyone without a Vercel
+account sees a login screen and assumes the site is broken.
 
-- turn Deployment Protection off for preview deployments, making preview URLs open to anyone
-  holding the link;
-- enable Protection Bypass for Automation, which produces a secret that can be appended to a
-  preview URL so a recipient without a Vercel account can open it. Better than the first
-  option, because previews stay closed to anything that has not been handed the link.
+**So the rule stands everywhere else: never send a raw Vercel preview URL to a client.** If a
+paying client is ever put on this workflow, Deployment Protection has to be dealt with first,
+either by turning it off for previews or by enabling Protection Bypass for Automation, which
+produces a secret that can be appended to a preview URL so someone without a Vercel account
+can open it. The second is better, because previews stay closed to anything that has not been
+handed the link.
 
-Whichever is chosen, record it here.
+### What still has to happen on every change here
+
+Going live first does not mean going quiet. After each change:
+
+- screenshot the live page on desktop and on a phone width, and post both to Petro
+- say plainly what changed and where
+- if she does not like it, revert immediately. It is one commit, it takes seconds, and it is
+  never charged or counted
+
+The safety rules below do not relax because there is no preview. The stop list still stops.
 
 ---
 

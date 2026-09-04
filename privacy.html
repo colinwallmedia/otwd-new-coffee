@@ -99,7 +99,7 @@ li{margin-bottom:8px}
 
     <section class="blk"><h2><em>01</em>Who we are</h2>
       <p>Off The Wall Digital is a trading name of Wall Media Ltd, a company registered in England and Wales under company number 15045668, with its registered office at Longfrey Cottage, Dorking Road, Chilworth, Surrey, GU4 8RH.</p>
-      <p>For the purposes of UK data protection law, Wall Media Ltd is the data controller for the personal information described on this page. If you want to talk to us about any of it, use the email button at the bottom of this page.</p>
+      <p>For the purposes of UK data protection law, Wall Media Ltd is the data controller for the personal information described on this page. If you want to talk to us about any of it, use the message link at the bottom of this page.</p>
     </section>
 
     <section class="blk"><h2><em>02</em>What this website collects</h2>
@@ -195,26 +195,14 @@ li{margin-bottom:8px}
 <footer class="foot">
   <div class="foot__in">
     <span style="max-width:62ch">&copy; <span class="yr">2026</span> Off The Wall Digital, a trading name of Wall Media Ltd. Registered in England and Wales, company number 15045668. Registered office: Longfrey Cottage, Dorking Road, Chilworth, Surrey, GU4 8RH.</span>
-    <span><button class="mailbtn" data-mail data-subject="Website enquiry" type="button">Email us</button></span>
+    <span><a href="./#enquiry">Send a message</a></span>
   </div>
 </footer>
 
 <script>
 (function(){
-  var u=['petro'],d=['wallmedia','co','uk'];
-  var addr=u.join('')+String.fromCharCode(64)+d.join('.');
   var ys=document.querySelectorAll('.yr');
   for(var i=0;i<ys.length;i++){ys[i].textContent=new Date().getFullYear();}
-  var bs=document.querySelectorAll('[data-mail]');
-  for(var j=0;j<bs.length;j++){
-    (function(b){
-      b.addEventListener('click',function(e){
-        e.preventDefault();
-        var s=b.getAttribute('data-subject');
-        window.location.href=String.fromCharCode(109,97,105,108,116,111,58)+addr+(s?'?subject='+encodeURIComponent(s):'');
-      });
-    })(bs[j]);
-  }
 
   var titles={privacy:'Privacy notice',terms:'Terms of use'};
   function show(name){

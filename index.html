@@ -1317,6 +1317,13 @@ section{position:relative}
   /* Booking calendar, loaded on first open rather than on every page view.
      The resizer script is appended as a real element, because a script injected
      through innerHTML would never execute. */
+  /* Other pages link here as ./#enquiry to reach the form, because a bare
+     mailto does nothing on a machine with no mail client set up. */
+  if (location.hash === '#enquiry'){
+    openModal('mEnquiry', null);
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+
   /* ---------------- enquiry form ---------------- */
   function resetEnquiry(){
     var f = document.getElementById('enquiryForm');

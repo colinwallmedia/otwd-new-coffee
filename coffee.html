@@ -66,15 +66,54 @@ main{position:relative;overflow:clip;padding:clamp(40px,6vw,72px) 0 clamp(50px,7
 h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:600;margin-top:20px;font-variation-settings:"SOFT" 60,"WONK" 1;max-width:22ch}
 .lede{font-size:clamp(1.02rem,1.3vw,1.15rem);color:var(--muted);max-width:56ch;margin:20px 0 0}
 
-.booking{
-  margin-top:36px;display:grid;grid-template-columns:minmax(320px,0.9fr) minmax(0,1.35fr);
-  gap:20px;align-items:start;
+/* the "three things change" illustrated card pattern, lifted from the homepage */
+.brow{
+  margin-top:38px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start;
 }
-.calwrap{
-  background:#fff;border:2px solid rgba(47,51,39,.78);
-  border-radius:26px;box-shadow:var(--shadow-l);overflow:hidden;
+.card{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:2.5px solid rgba(47,51,39,.82);
+  box-shadow:var(--shadow-m);
+  transform:rotate(var(--tilt,0deg)) translateY(var(--drop,0px));
+  transition:transform .45s var(--spring),box-shadow .45s var(--spring);
 }
-.calwrap__sill{height:15px;background:linear-gradient(180deg,rgba(47,51,39,.9),rgba(47,51,39,.72))}
+.brow .card:nth-child(1){--tilt:-1.1deg;--drop:0px}
+.brow .card:nth-child(2){--tilt:.9deg;--drop:24px}
+.brow .card:nth-child(3){--tilt:-.6deg;--drop:8px}
+.card:hover{transform:rotate(0deg) translateY(-10px) scale(1.02);box-shadow:var(--shadow-l)}
+.card__awning{height:15px;background:repeating-linear-gradient(90deg,var(--c) 0 18px,#fff8e9 18px 36px)}
+.card__glass{
+  position:relative;padding:30px 26px 34px;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.35) 42%,rgba(255,255,255,0) 43%),
+    var(--cwash);
+}
+.card__glass::after{
+  content:"";position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;
+  border-top:1.5px solid rgba(47,51,39,.1);
+}
+.card__num{
+  position:absolute;top:14px;right:20px;
+  font-family:Fraunces,serif;font-size:3.6rem;font-weight:700;line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px var(--cstroke);
+  opacity:.32;pointer-events:none;user-select:none;
+}
+.card__art{margin-bottom:22px;display:block}
+.card h3{font-size:1.26rem;margin-bottom:11px;max-width:16ch}
+.card p{color:var(--muted);margin:0;font-size:.95rem;line-height:1.6}
+.card__sill{height:11px;background:linear-gradient(180deg,rgba(47,51,39,.86),rgba(47,51,39,.68))}
+
+/* the full-width booking card */
+.bcalcard{margin-top:32px}
+.bcalcard .card__glass{padding:36px 32px 38px}
+.calhead{
+  font-family:Fraunces,serif;font-weight:600;line-height:1.12;
+  font-variation-settings:"SOFT" 50,"WONK" 1;color:var(--head);
+}
+.bcalcard .calhead{font-size:clamp(1.5rem,2.6vw,2.05rem);margin:0 0 22px;max-width:26ch}
+.calbox{
+  background:#fff;border:2px solid rgba(47,51,39,.78);border-radius:22px;overflow:hidden;
+}
 .cal{
   display:block;width:100%;min-height:560px;border:0;background:#fff;
   /* form_embed.js parks the iframe off screen to measure it and never restores it,
@@ -87,21 +126,13 @@ h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:600;margin-top:20px;font-varia
 .calloading{padding:44px 20px;text-align:center;color:var(--muted);font-size:.9rem;margin:0}
 .calnote{font-size:.86rem;color:var(--muted);margin:14px 0 0}
 
-.steps{list-style:none;margin:0;padding:0;display:grid;gap:16px}
-.steps li{
-  background:#fff;border:2px solid rgba(47,51,39,.78);border-radius:26px;
-  box-shadow:var(--shadow-l);padding:26px 28px;display:grid;
-  grid-template-columns:auto 1fr;gap:6px 20px;align-items:start;
+@media (max-width:1020px){
+  .brow{grid-template-columns:repeat(2,1fr)}
+  .brow .card{--drop:0px}
 }
-.steps__n{
-  font-family:Fraunces,serif;font-weight:700;font-size:1.7rem;line-height:1;color:var(--gold);
-  grid-row:span 2;padding-top:2px;
-}
-.steps h2{font-size:1.16rem;font-weight:600;font-variation-settings:"SOFT" 50,"WONK" 1}
-.steps p{margin:0;font-size:.95rem;color:var(--muted)}
-
-@media (max-width:980px){
-  .booking{grid-template-columns:1fr}
+@media (max-width:760px){
+  .brow{grid-template-columns:1fr}
+  .bcalcard .card__glass{padding:28px 20px 30px}
 }
 
 .alt{
@@ -160,30 +191,72 @@ footer{border-top:1px solid rgba(47,51,39,.12);padding:30px 0 60px;margin-top:20
   <div class="wrap">
     <span class="eyebrow"><i aria-hidden="true"></i>No sales script</span>
     <h1>Let's put a coffee in the diary.</h1>
-    <p class="lede">Pick whatever time suits you. A coffee if you are local to Ramsgate, a phone call if you are not. Half an hour, and no pressure to decide anything on the spot.</p>
+    <p class="lede">A coffee if you are local to Ramsgate, a phone call if you are not. Half an hour, and no pressure to decide anything on the spot.</p>
 
-    <div class="booking">
-      <ol class="steps">
-        <li>
-          <span class="steps__n" aria-hidden="true">1</span>
-          <h2>Pick a slot</h2>
+    <div class="brow">
+
+      <article class="card" style="--c:#e3b23c;--cwash:rgba(227,178,60,.13);--cstroke:#c9911f">
+        <div class="card__awning" aria-hidden="true"></div>
+        <div class="card__glass">
+          <span class="card__num" aria-hidden="true">01</span>
+          <svg class="card__art" width="78" height="72" viewBox="0 0 78 72" fill="none" aria-hidden="true">
+            <circle cx="36" cy="40" r="14" fill="#fdf8ec" stroke="#c9911f" stroke-width="2.4"/>
+            <path d="M36 33.5V40l4.6 2.8" stroke="#c9911f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M36 16v6M15.6 24.4l4.2 4.2M56.4 24.4l-4.2 4.2" stroke="#e3b23c" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M6 58h64" stroke="#c9911f" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M14 58c0-5 3.4-8.6 7.6-8.6M62 58c0-5-3.4-8.6-7.6-8.6" stroke="#c9911f" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>
+            <path d="M66 30c1.4 3 2.6 4.2 5.6 5.6-3 1.4-4.2 2.6-5.6 5.6-1.4-3-2.6-4.2-5.6-5.6 3-1.4 4.2-2.6 5.6-5.6z" fill="#e3b23c"/>
+          </svg>
+          <h3>Pick a slot</h3>
           <p>Half an hour. Enough to hear what is going on and tell you honestly whether I can help.</p>
-        </li>
-        <li>
-          <span class="steps__n" aria-hidden="true">2</span>
-          <h2>Turn up as you are</h2>
-          <p>No deck, no script, no discovery framework. Just tell me what is eating your week.</p>
-        </li>
-        <li>
-          <span class="steps__n" aria-hidden="true">3</span>
-          <h2>Then a plan, in writing</h2>
-          <p>What I would start with, what can wait, and roughly what it costs. Yours to keep either way.</p>
-        </li>
-      </ol>
+        </div>
+        <div class="card__sill" aria-hidden="true"></div>
+      </article>
 
-      <div class="calcol">
-        <div class="calwrap">
-          <div class="calwrap__sill" aria-hidden="true"></div>
+      <article class="card" style="--c:#2ea89a;--cwash:rgba(46,168,154,.13);--cstroke:#237a70">
+        <div class="card__awning" aria-hidden="true"></div>
+        <div class="card__glass">
+          <span class="card__num" aria-hidden="true">02</span>
+          <svg class="card__art" width="78" height="72" viewBox="0 0 78 72" fill="none" aria-hidden="true">
+            <rect x="6" y="7" width="58" height="50" rx="8" stroke="#237a70" stroke-width="2.4"/>
+            <path d="M35 7v50M6 32h58" stroke="#237a70" stroke-width="1.6" opacity=".45"/>
+            <path d="M35 47s-13-7.6-13-16.2A7.2 7.2 0 0 1 35 26.6a7.2 7.2 0 0 1 13 4.2C48 39.4 35 47 35 47z" fill="#fdf8ec" stroke="#237a70" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M4 63h62" stroke="#237a70" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M69 16c1.6 3.4 3 4.8 6.4 6.4-3.4 1.6-4.8 3-6.4 6.4-1.6-3.4-3-4.8-6.4-6.4 3.4-1.6 4.8-3 6.4-6.4z" fill="#2ea89a"/>
+          </svg>
+          <h3>Turn up as you are</h3>
+          <p>No deck, no script, no discovery framework. Just tell me what is eating your week.</p>
+        </div>
+        <div class="card__sill" aria-hidden="true"></div>
+      </article>
+
+      <article class="card" style="--c:#e8547a;--cwash:rgba(232,84,122,.12);--cstroke:#c23e63">
+        <div class="card__awning" aria-hidden="true"></div>
+        <div class="card__glass">
+          <span class="card__num" aria-hidden="true">03</span>
+          <svg class="card__art" width="78" height="72" viewBox="0 0 78 72" fill="none" aria-hidden="true">
+            <path d="M60 12.5A28 28 0 0 0 11.6 24" stroke="#c23e63" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="5 6"/>
+            <path d="M14 58.5A28 28 0 0 0 62.6 47" stroke="#c23e63" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="5 6"/>
+            <path d="M11.6 15v9.4h9.4M62.6 56.4V47h-9.4" stroke="#c23e63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="20" y="26" width="38" height="24" rx="4.5" fill="#fdf8ec" stroke="#c23e63" stroke-width="2.4"/>
+            <path d="m20.8 28.4 17 12.2c.7.5 1.7.5 2.4 0l17-12.2" stroke="#c23e63" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="58" cy="49" r="7.4" fill="#fdf8ec" stroke="#e8547a" stroke-width="2.4"/>
+            <path d="m54.8 49 2.4 2.4 4.2-4.6" stroke="#e8547a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Then a plan, in writing</h3>
+          <p>What I would start with, what can wait, and roughly what it costs. Yours to keep either way.</p>
+        </div>
+        <div class="card__sill" aria-hidden="true"></div>
+      </article>
+
+    </div>
+
+    <article class="card bcalcard" style="--c:#6f7d45;--cwash:rgba(111,125,69,.14);--cstroke:#5c6939">
+      <div class="card__awning" aria-hidden="true"></div>
+      <div class="card__glass">
+        <span class="card__num" aria-hidden="true">04</span>
+        <h2 class="calhead">Pick whatever time suits you.</h2>
+        <div class="calbox">
           <p class="calloading" id="calLoading">Loading the calendar...</p>
           <iframe class="cal" id="dqB0NblntdSZnLlpSFEz_1788453583961" hidden
                   data-src="https://api.leadconnectorhq.com/widget/booking/dqB0NblntdSZnLlpSFEz"
@@ -191,7 +264,8 @@ footer{border-top:1px solid rgba(47,51,39,.12);padding:30px 0 60px;margin-top:20
         </div>
         <noscript><p class="noscript-note">Scripts are switched off, so the calendar will not load. <a href="https://api.leadconnectorhq.com/widget/booking/dqB0NblntdSZnLlpSFEz">Open it in a new tab</a> instead.</p></noscript>
       </div>
-    </div>
+      <div class="card__sill" aria-hidden="true"></div>
+    </article>
 
     <div class="alt">
       <div class="altcard">
